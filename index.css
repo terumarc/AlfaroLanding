@@ -1319,10 +1319,10 @@ header>* {
     }
 
     .modal-container {
+        width: min(calc(100% - 30px), 500px);
         padding: 30px;
-        /* Reduced from 60px */
         border-radius: 30px;
-        margin-top: 20px;
+        margin: 20px auto;
     }
 
     .modal-header h2 {
@@ -1448,7 +1448,8 @@ header>* {
 
     /* Extra small screens booking form polish */
     .modal-container {
-        padding: 25px 20px;
+        padding: 20px 15px;
+        width: min(calc(100% - 20px), 500px);
     }
 
     .modal-header h2 {
