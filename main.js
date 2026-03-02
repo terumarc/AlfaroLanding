@@ -18,20 +18,29 @@ document.addEventListener('DOMContentLoaded', () => {
     const forcePlayVideos = () => {
         const videos = document.querySelectorAll('video');
         videos.forEach(video => {
-            const playPromise = video.play();
-            if (playPromise !== undefined) {
-                playPromise.catch(() => {
-                    // Autoplay was prevented
-                    // We can try playing again on first user interaction
-                    const playOnInteraction = () => {
-                        video.play();
-                        document.removeEventListener('click', playOnInteraction);
-                        document.removeEventListener('touchstart', playOnInteraction);
-                    };
-                    document.addEventListener('click', playOnInteraction);
-                    document.addEventListener('touchstart', playOnInteraction);
-                });
-            }
+            video.muted = true;
+            video.defaultMuted = true;
+            video.setAttribute('muted', '');
+            video.setAttribute('playsinline', '');
+
+            const playVideo = () => {
+                video.load();
+                const playPromise = video.play();
+                if (playPromise !== undefined) {
+                    playPromise.catch(() => {
+                        // Autoplay was prevented
+                        const playOnInteraction = () => {
+                            video.play();
+                            document.removeEventListener('click', playOnInteraction);
+                            document.removeEventListener('touchstart', playOnInteraction);
+                        };
+                        document.addEventListener('click', playOnInteraction);
+                        document.addEventListener('touchstart', playOnInteraction);
+                    });
+                }
+            };
+
+            playVideo();
         });
     };
 

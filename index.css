@@ -43,6 +43,9 @@ body {
     isolation: isolate;
     -webkit-mask-image: -webkit-radial-gradient(white, black);
     mask-image: -webkit-radial-gradient(white, black);
+    transform: translateZ(0);
+    border: 1px solid transparent;
+    backface-visibility: hidden;
 }
 
 .main-footer {
@@ -112,6 +115,9 @@ body {
     object-fit: cover;
     filter: brightness(0.9) contrast(1.05);
     transition: transform 10s ease-out;
+    will-change: transform;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
 }
 
 .hero-glass-overlay {
