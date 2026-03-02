@@ -1315,22 +1315,40 @@ header>* {
 @media (max-width: 480px) {
     header {
         padding: 0 15px;
+        height: 50px;
     }
 
     .logo {
-        font-size: 0.8rem;
+        font-size: 0.75rem;
+    }
+
+    .header-cta {
+        padding: 6px 12px;
+        font-size: 0.7rem;
     }
 
     .hero-text-stack h1 {
-        font-size: 2.4rem;
+        font-size: 2.2rem;
     }
 
     .hero-text-stack h2 {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
     }
 
-    .features-header h2 {
-        font-size: 2.2rem;
+    .features-header h2,
+    .faq-content h2,
+    .tech-content h2,
+    .cta-content h2 {
+        font-size: 1.8rem !important;
+        /* Force smaller size for mobile */
+        line-height: 1.2;
+    }
+
+    .section-light,
+    .section-dark,
+    .faq-section {
+        padding: 80px 15px 40px 15px;
+        /* Add more top padding to avoid header */
     }
 
     .footer-grid {
@@ -1339,6 +1357,10 @@ header>* {
 
     .footer-logo {
         font-size: 15vw;
+    }
+
+    .faq-question {
+        font-size: 1.1rem;
     }
 }
 
