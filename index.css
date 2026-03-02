@@ -1199,272 +1199,7 @@ header>* {
     transform: rotateY(300deg) translateZ(500px);
 }
 
-/* Consolidated Mobile Adaptability */
-@media (max-width: 1024px) {
-    header {
-        padding: 0 40px;
-    }
 
-    .hero-content {
-        padding: 120px 40px;
-    }
-
-    .hero-text-stack h1 {
-        font-size: 4.5rem;
-    }
-
-    .tech-split,
-    .care-split,
-    .faq-split {
-        grid-template-columns: 1fr;
-        gap: 60px;
-    }
-
-    .footer-grid {
-        grid-template-columns: 1fr 1fr;
-        gap: 40px;
-    }
-}
-
-@media (max-width: 768px) {
-    header {
-        padding: 0 20px;
-        top: 24px;
-    }
-
-    .logo {
-        font-size: 0.9rem;
-    }
-
-    .header-cta {
-        padding: 8px 16px;
-        font-size: 0.75rem;
-    }
-
-    .header-cta .icon-circle {
-        width: 20px;
-        height: 20px;
-    }
-
-    .nav-links {
-        display: none;
-    }
-
-    .hero-content {
-        padding: 100px 20px;
-    }
-
-    .hero-text-stack h1 {
-        font-size: 3.2rem;
-    }
-
-    .hero-text-stack h2 {
-        font-size: 1.5rem;
-    }
-
-    .btn-waitlist {
-        padding: 12px 24px;
-        font-size: 0.9rem;
-    }
-
-    .carousel-container {
-        height: 400px;
-    }
-
-    .carousel-3d {
-        width: 240px;
-        height: 340px;
-    }
-
-    .carousel-item {
-        width: 240px;
-        height: 340px;
-    }
-
-    .carousel-item:nth-child(1) {
-        transform: rotateY(0deg) translateZ(300px);
-    }
-
-    .carousel-item:nth-child(2) {
-        transform: rotateY(60deg) translateZ(300px);
-    }
-
-    .carousel-item:nth-child(3) {
-        transform: rotateY(120deg) translateZ(300px);
-    }
-
-    .carousel-item:nth-child(4) {
-        transform: rotateY(300deg) translateZ(300px);
-    }
-
-    .team-info {
-        padding: 20px;
-    }
-
-    .team-info h3 {
-        font-size: 1.1rem;
-    }
-
-    .carousel-controls {
-        gap: 30px;
-        margin-top: 60px;
-    }
-
-    /* Modal Mobile Adjustments */
-    .modal-overlay {
-        align-items: flex-start;
-        /* Start from top on mobile for scrolling */
-        padding: 40px 20px;
-        overflow-y: auto;
-    }
-
-    .modal-container {
-        width: min(calc(100% - 30px), 500px);
-        padding: 30px;
-        border-radius: 30px;
-        margin: 20px auto;
-    }
-
-    .modal-header h2 {
-        font-size: 1.8rem;
-    }
-
-    .modal-header p {
-        color: rgba(255, 255, 255, 0.6) !important;
-        /* Fixed contrast for dark mode */
-        font-size: 0.9rem;
-        line-height: 1.4;
-    }
-
-    .modal-close {
-        top: 15px;
-        right: 15px;
-        width: 34px;
-        height: 34px;
-    }
-
-    .form-group {
-        margin-bottom: 20px;
-    }
-
-    .form-group label {
-        margin-bottom: 10px;
-    }
-
-    .form-group select {
-        padding-right: 40px;
-        /* Space for arrow */
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        overflow: hidden;
-    }
-
-    /* Cards Ticker resizing */
-    .feature-card {
-        flex: 0 0 280px;
-        /* Reduced from 400px */
-        height: 480px;
-        /* Reduced from 640px */
-        padding: 20px;
-        margin-right: 20px;
-    }
-
-    .header-left .value {
-        font-size: 3.5rem;
-    }
-
-    .slider-container {
-        margin: 0 -20px;
-        padding: 0 20px;
-        width: calc(100% + 40px);
-    }
-
-    .features-header h2 {
-        font-size: 3rem;
-    }
-}
-
-@media (max-width: 480px) {
-    header {
-        padding: 0 15px;
-        height: 50px;
-    }
-
-    .logo {
-        font-size: 0.75rem;
-    }
-
-    .header-cta {
-        padding: 6px 12px;
-        font-size: 0.7rem;
-    }
-
-    .hero-text-stack h1 {
-        font-size: 2.2rem;
-    }
-
-    .hero-text-stack h2 {
-        font-size: 1.1rem;
-    }
-
-    .features-header h2,
-    .faq-content h2,
-    .tech-content h2,
-    .cta-content h2 {
-        font-size: 1.8rem !important;
-        /* Force smaller size for mobile */
-        line-height: 1.2;
-    }
-
-    .feature-card {
-        flex: 0 0 240px;
-        /* Even smaller for very narrow screens */
-        height: 420px;
-        padding: 15px;
-    }
-
-    .header-left .value {
-        font-size: 2.8rem;
-    }
-
-    .section-light,
-    .section-dark,
-    .faq-section {
-        padding: 80px 15px 40px 15px;
-        /* Add more top padding to avoid header */
-    }
-
-    .footer-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .footer-logo {
-        font-size: 15vw;
-    }
-
-    .faq-question {
-        font-size: 1.1rem;
-    }
-
-    /* Extra small screens booking form polish */
-    .modal-container {
-        padding: 20px 15px;
-        width: min(calc(100% - 20px), 500px);
-    }
-
-    .modal-header h2 {
-        font-size: 1.6rem;
-    }
-
-    .modal-header p {
-        font-size: 0.85rem;
-    }
-
-    .form-submit {
-        padding: 15px;
-        font-size: 0.9rem;
-    }
-}
 
 /* Modal Styles */
 .modal-overlay {
@@ -1687,4 +1422,278 @@ input[type='date'] {
     display: block;
     font-size: 0.8rem;
     opacity: 0.5;
+}
+
+/* Consolidated Mobile Adaptability (Moved to bottom for precedence) */
+@media (max-width: 1024px) {
+    header {
+        padding: 0 40px;
+    }
+
+    .hero-content {
+        padding: 120px 40px;
+    }
+
+    .hero-text-stack h1 {
+        font-size: 4.5rem;
+    }
+
+    .tech-split,
+    .care-split,
+    .faq-split {
+        grid-template-columns: 1fr;
+        gap: 60px;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+    }
+}
+
+@media (max-width: 768px) {
+    header {
+        padding: 0 20px;
+        top: 24px;
+    }
+
+    .logo {
+        font-size: 0.9rem;
+    }
+
+    .header-cta {
+        padding: 8px 16px;
+        font-size: 0.75rem;
+    }
+
+    .header-cta .icon-circle {
+        width: 20px;
+        height: 20px;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    .hero-content {
+        padding: 100px 20px;
+    }
+
+    .hero-text-stack h1 {
+        font-size: 3.2rem;
+    }
+
+    .hero-text-stack h2 {
+        font-size: 1.5rem;
+    }
+
+    .btn-waitlist {
+        padding: 12px 24px;
+        font-size: 0.9rem;
+    }
+
+    .carousel-container {
+        height: 400px;
+    }
+
+    .carousel-3d {
+        width: 240px;
+        height: 340px;
+    }
+
+    .carousel-item {
+        width: 240px;
+        height: 340px;
+    }
+
+    .carousel-item:nth-child(1) {
+        transform: rotateY(0deg) translateZ(300px);
+    }
+
+    .carousel-item:nth-child(2) {
+        transform: rotateY(60deg) translateZ(300px);
+    }
+
+    .carousel-item:nth-child(3) {
+        transform: rotateY(120deg) translateZ(300px);
+    }
+
+    .carousel-item:nth-child(4) {
+        transform: rotateY(300deg) translateZ(300px);
+    }
+
+    .team-info {
+        padding: 20px;
+    }
+
+    .team-info h3 {
+        font-size: 1.1rem;
+    }
+
+    .carousel-controls {
+        gap: 30px;
+        margin-top: 60px;
+    }
+
+    /* Modal Mobile Adjustments */
+    .modal-overlay {
+        align-items: flex-start;
+        /* Start from top on mobile for scrolling */
+        padding: 40px 20px;
+        overflow-y: auto;
+    }
+
+    .modal-container {
+        width: min(calc(100% - 30px), 500px);
+        padding: 30px;
+        border-radius: 30px;
+        margin: 20px auto;
+    }
+
+    .modal-header h2 {
+        font-size: 1.8rem;
+    }
+
+    .modal-header p {
+        color: rgba(255, 255, 255, 0.9) !important;
+        /* Increased contrast significantly */
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+
+    .modal-close {
+        top: 15px;
+        right: 15px;
+        width: 34px;
+        height: 34px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-group label {
+        margin-bottom: 10px;
+    }
+
+    .form-group select {
+        padding: 15px 40px 15px 15px;
+        width: 100%;
+        text-align: left;
+        font-size: 0.95rem;
+        appearance: none;
+        /* Try to fix custom arrow issues */
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 15px center;
+        background-size: 18px;
+    }
+
+    /* Cards Ticker resizing */
+    .feature-card {
+        flex: 0 0 280px;
+        /* Reduced from 400px */
+        height: 480px;
+        /* Reduced from 640px */
+        padding: 20px;
+        margin-right: 20px;
+    }
+
+    .header-left .value {
+        font-size: 3.5rem;
+    }
+
+    .slider-container {
+        margin: 0 -20px;
+        padding: 0 20px;
+        width: calc(100% + 40px);
+    }
+
+    .features-header h2 {
+        font-size: 3rem;
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        padding: 0 15px;
+        height: 50px;
+    }
+
+    .logo {
+        font-size: 0.75rem;
+    }
+
+    .header-cta {
+        padding: 6px 12px;
+        font-size: 0.7rem;
+    }
+
+    .hero-text-stack h1 {
+        font-size: 2.2rem;
+    }
+
+    .hero-text-stack h2 {
+        font-size: 1.1rem;
+    }
+
+    .features-header h2,
+    .faq-content h2,
+    .tech-content h2,
+    .cta-content h2 {
+        font-size: 1.8rem !important;
+        /* Force smaller size for mobile */
+        line-height: 1.2;
+    }
+
+    .feature-card {
+        flex: 0 0 240px;
+        /* Even smaller for very narrow screens */
+        height: 420px;
+        padding: 15px;
+    }
+
+    .header-left .value {
+        font-size: 2.8rem;
+    }
+
+    .section-light,
+    .section-dark,
+    .faq-section {
+        padding: 80px 15px 40px 15px;
+        /* Add more top padding to avoid header */
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-logo {
+        font-size: 15vw;
+    }
+
+    .faq-question {
+        font-size: 1.1rem;
+    }
+
+    /* Extra small screens booking form polish */
+    .modal-container {
+        padding: 20px 15px;
+        width: min(calc(100% - 20px), 500px);
+    }
+
+    .modal-header h2 {
+        font-size: 1.6rem;
+    }
+
+    .modal-header p {
+        font-size: 0.85rem;
+        color: rgba(255, 255, 255, 1) !important;
+        /* Maximum contrast on smallest screens */
+    }
+
+    .form-submit {
+        padding: 15px;
+        font-size: 0.9rem;
+    }
 }
