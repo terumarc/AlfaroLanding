@@ -39,6 +39,9 @@ body {
     background-color: var(--bg-section);
     overflow: hidden;
     border-radius: 40px;
+    /* Safari Fixes for clipping video with border-radius */
+    isolation: isolate;
+    -webkit-mask-image: -webkit-radial-gradient(white, black);
 }
 
 .main-footer {
@@ -100,7 +103,8 @@ body {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%) scale(1.5);
+    transform: translate(-50%, -50%) scale(1.5) translateZ(0);
+    /* translateZ(0) to fix Safari sticky/clipping issues */
     width: 100%;
     height: 100%;
     z-index: 0;
@@ -243,7 +247,11 @@ header>* {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 12px;
+}
+
+.icon-circle svg,
+.icon-circle-black svg {
+    display: block;
 }
 
 /* Hero Content Grid */
@@ -1147,13 +1155,17 @@ header>* {
     width: 60px;
     height: 60px;
     border-radius: 50%;
-    font-size: 1.2rem;
     cursor: pointer;
     transition: var(--transition);
     display: flex;
     align-items: center;
     justify-content: center;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+}
+
+.carousel-prev svg,
+.carousel-next svg {
+    display: block;
 }
 
 .carousel-prev:hover,
