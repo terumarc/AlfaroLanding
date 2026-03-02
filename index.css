@@ -1329,6 +1329,13 @@ header>* {
         font-size: 1.8rem;
     }
 
+    .modal-header p {
+        color: rgba(255, 255, 255, 0.6) !important;
+        /* Fixed contrast for dark mode */
+        font-size: 0.9rem;
+        line-height: 1.4;
+    }
+
     .modal-close {
         top: 15px;
         right: 15px;
@@ -1342,6 +1349,14 @@ header>* {
 
     .form-group label {
         margin-bottom: 10px;
+    }
+
+    .form-group select {
+        padding-right: 40px;
+        /* Space for arrow */
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
     }
 
     /* Cards Ticker resizing */
@@ -1438,6 +1453,10 @@ header>* {
 
     .modal-header h2 {
         font-size: 1.6rem;
+    }
+
+    .modal-header p {
+        font-size: 0.85rem;
     }
 
     .form-submit {
