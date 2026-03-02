@@ -1310,6 +1310,40 @@ header>* {
         margin-top: 60px;
     }
 
+    /* Modal Mobile Adjustments */
+    .modal-overlay {
+        align-items: flex-start;
+        /* Start from top on mobile for scrolling */
+        padding: 40px 20px;
+        overflow-y: auto;
+    }
+
+    .modal-container {
+        padding: 30px;
+        /* Reduced from 60px */
+        border-radius: 30px;
+        margin-top: 20px;
+    }
+
+    .modal-header h2 {
+        font-size: 1.8rem;
+    }
+
+    .modal-close {
+        top: 15px;
+        right: 15px;
+        width: 34px;
+        height: 34px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-group label {
+        margin-bottom: 10px;
+    }
+
     /* Cards Ticker resizing */
     .feature-card {
         flex: 0 0 280px;
@@ -1395,6 +1429,20 @@ header>* {
 
     .faq-question {
         font-size: 1.1rem;
+    }
+
+    /* Extra small screens booking form polish */
+    .modal-container {
+        padding: 25px 20px;
+    }
+
+    .modal-header h2 {
+        font-size: 1.6rem;
+    }
+
+    .form-submit {
+        padding: 15px;
+        font-size: 0.9rem;
     }
 }
 
