@@ -1309,6 +1309,30 @@ header>* {
         gap: 30px;
         margin-top: 60px;
     }
+
+    /* Cards Ticker resizing */
+    .feature-card {
+        flex: 0 0 280px;
+        /* Reduced from 400px */
+        height: 480px;
+        /* Reduced from 640px */
+        padding: 20px;
+        margin-right: 20px;
+    }
+
+    .header-left .value {
+        font-size: 3.5rem;
+    }
+
+    .slider-container {
+        margin: 0 -20px;
+        padding: 0 20px;
+        width: calc(100% + 40px);
+    }
+
+    .features-header h2 {
+        font-size: 3rem;
+    }
 }
 
 @media (max-width: 480px) {
@@ -1341,6 +1365,17 @@ header>* {
         font-size: 1.8rem !important;
         /* Force smaller size for mobile */
         line-height: 1.2;
+    }
+
+    .feature-card {
+        flex: 0 0 240px;
+        /* Even smaller for very narrow screens */
+        height: 420px;
+        padding: 15px;
+    }
+
+    .header-left .value {
+        font-size: 2.8rem;
     }
 
     .section-light,
