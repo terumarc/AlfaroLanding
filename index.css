@@ -42,6 +42,7 @@ body {
     /* Safari Fixes for clipping video with border-radius */
     isolation: isolate;
     -webkit-mask-image: -webkit-radial-gradient(white, black);
+    mask-image: -webkit-radial-gradient(white, black);
 }
 
 .main-footer {
@@ -635,6 +636,10 @@ header>* {
     position: relative;
     border: 1px solid rgba(0, 0, 0, 0.05);
     box-shadow: 0 40px 100px rgba(0, 0, 0, 0.08);
+    /* Safari Fixes */
+    isolation: isolate;
+    -webkit-mask-image: -webkit-radial-gradient(white, black);
+    transform: translateZ(0);
 }
 
 /* Scanline removed for clean white aesthetic */
@@ -801,6 +806,10 @@ header>* {
     border-radius: 40px;
     /* Rounded corners for premium look */
     overflow: hidden;
+    /* Safari Fixes */
+    isolation: isolate;
+    -webkit-mask-image: -webkit-radial-gradient(white, black);
+    transform: translateZ(0);
 }
 
 .faq-image img {

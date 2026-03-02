@@ -14,6 +14,30 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('scroll', revealOnScroll);
     revealOnScroll(); // Initial check
 
+    // Force Play Videos (Safari fix for autoplay)
+    const forcePlayVideos = () => {
+        const videos = document.querySelectorAll('video');
+        videos.forEach(video => {
+            const playPromise = video.play();
+            if (playPromise !== undefined) {
+                playPromise.catch(() => {
+                    // Autoplay was prevented
+                    // We can try playing again on first user interaction
+                    const playOnInteraction = () => {
+                        video.play();
+                        document.removeEventListener('click', playOnInteraction);
+                        document.removeEventListener('touchstart', playOnInteraction);
+                    };
+                    document.addEventListener('click', playOnInteraction);
+                    document.addEventListener('touchstart', playOnInteraction);
+                });
+            }
+        });
+    };
+
+    forcePlayVideos();
+    window.addEventListener('load', forcePlayVideos);
+
     // Modal Logic
     const modal = document.getElementById('bookingModal');
     const openBtns = document.querySelectorAll('.header-cta, .btn-waitlist, .btn-white');
