@@ -1283,7 +1283,8 @@ header>* {
 }
 
 .modal-header p {
-    color: var(--gray-muted) !important;
+    color: rgba(255, 255, 255, 0.7) !important;
+    /* Fixed contrast for PC */
     font-size: 1rem;
 }
 
