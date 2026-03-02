@@ -86,14 +86,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
         isDown = true;
         track.setPointerCapture(e.pointerId);
-        track.style.animationPlayState = 'paused';
-        startX = e.clientX; // Switch to clientX
-        dragOffset = getTranslateX();
+
+        // Remove animation during drag to prevent conflicts with transform
+        const currentTransform = getTranslateX();
+        track.style.animation = 'none';
+        track.style.transform = `translate3d(${currentTransform}px, 0, 0)`;
+
+        startX = e.clientX;
+        dragOffset = currentTransform;
         track.style.transition = 'none';
         track.classList.remove('syncing');
 
-        // Disable text selection during drag
+        // Disable text selection and card pointer events during drag
         document.body.style.userSelect = 'none';
+        track.style.pointerEvents = 'none'; // Temporarily disable events to sub-elements
+        track.querySelectorAll('.feature-card').forEach(card => card.style.pointerEvents = 'none');
     };
 
     const handlePointerUp = (e) => {
@@ -101,6 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
         isDown = false;
         track.releasePointerCapture(e.pointerId);
         document.body.style.userSelect = '';
+        track.querySelectorAll('.feature-card').forEach(card => card.style.pointerEvents = '');
 
         const trackWidth = track.offsetWidth / 2;
         let currentX = getTranslateX();
@@ -112,14 +120,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const progress = Math.abs(currentX / trackWidth);
         const newDelay = -(progress * duration);
 
-        // Snap animation state
+        // Restore animation state
         track.style.transform = '';
+        track.style.animation = `ticker ${duration}ms linear infinite`;
         track.style.animationDelay = `${newDelay}ms`;
-
-        // Ensure the restart is clean
-        requestAnimationFrame(() => {
-            track.style.animationPlayState = 'running';
-        });
+        track.style.animationPlayState = 'running';
     };
 
     const handlePointerMove = (e) => {
