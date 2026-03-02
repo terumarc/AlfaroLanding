@@ -1202,26 +1202,16 @@ header>* {
 
 /* Consolidated Mobile Adaptability */
 @media (max-width: 1024px) {
+    header {
+        padding: 0 40px;
+    }
+
     .hero-content {
-        grid-template-areas: "top-left" "bottom-left" "bottom-right";
-        grid-template-columns: 1fr;
-        grid-template-rows: auto auto auto;
-        gap: 60px;
-        text-align: left;
         padding: 120px 40px;
     }
 
-    .top-left h1 {
-        font-size: 3.5rem;
-    }
-
-    .bottom-right {
-        align-items: flex-start;
-        text-align: left;
-    }
-
-    .bottom-right h2 {
-        font-size: 2.5rem;
+    .hero-text-stack h1 {
+        font-size: 4.5rem;
     }
 
     .tech-split,
@@ -1231,97 +1221,124 @@ header>* {
         gap: 60px;
     }
 
-    .tech-image,
-    .tech-content,
-    .faq-image {
-        min-height: auto;
-        height: auto;
-    }
-
-    .tech-content h2,
-    .faq-content h2,
-    .cta-content h2 {
-        font-size: 3.2rem;
-    }
-
     .footer-grid {
         grid-template-columns: 1fr 1fr;
         gap: 40px;
-    }
-
-    .footer-logo {
-        font-size: 12vw;
-    }
-
-    .cta-section {
-        padding: 0 40px;
     }
 }
 
 @media (max-width: 768px) {
     header {
-        padding: 0 30px;
+        padding: 0 20px;
+        top: 24px;
+    }
+
+    .logo {
+        font-size: 0.9rem;
+    }
+
+    .header-cta {
+        padding: 8px 16px;
+        font-size: 0.75rem;
+    }
+
+    .header-cta .icon-circle {
+        width: 20px;
+        height: 20px;
     }
 
     .nav-links {
         display: none;
     }
 
-    .section-light,
-    .section-dark,
-    .faq-section {
-        padding: 60px 20px;
+    .hero-content {
+        padding: 100px 20px;
     }
 
-    .tech-content {
-        padding: 40px 20px;
+    .hero-text-stack h1 {
+        font-size: 3.2rem;
     }
 
-    .slider-container {
-        margin: 0 -20px;
-        padding: 0 20px;
-        width: calc(100% + 40px);
+    .hero-text-stack h2 {
+        font-size: 1.5rem;
     }
 
-    .feature-card {
-        flex: 0 0 320px;
-        height: 500px;
+    .btn-waitlist {
+        padding: 12px 24px;
+        font-size: 0.9rem;
+    }
+
+    .carousel-container {
+        height: 400px;
+    }
+
+    .carousel-3d {
+        width: 240px;
+        height: 340px;
+    }
+
+    .carousel-item {
+        width: 240px;
+        height: 340px;
+    }
+
+    .carousel-item:nth-child(1) {
+        transform: rotateY(0deg) translateZ(300px);
+    }
+
+    .carousel-item:nth-child(2) {
+        transform: rotateY(60deg) translateZ(300px);
+    }
+
+    .carousel-item:nth-child(3) {
+        transform: rotateY(120deg) translateZ(300px);
+    }
+
+    .carousel-item:nth-child(4) {
+        transform: rotateY(300deg) translateZ(300px);
+    }
+
+    .team-info {
         padding: 20px;
     }
 
-    .header-left .value {
-        font-size: 3.5rem;
+    .team-info h3 {
+        font-size: 1.1rem;
+    }
+
+    .carousel-controls {
+        gap: 30px;
+        margin-top: 60px;
     }
 }
 
 @media (max-width: 480px) {
-    .features-header h2 {
-        font-size: 2.5rem;
-    }
-
-    .slider-container {
-        margin: 0 -15px;
+    header {
         padding: 0 15px;
-        width: calc(100% + 30px);
     }
 
-    .feature-card {
-        flex: 0 0 280px;
-        height: 450px;
+    .logo {
+        font-size: 0.8rem;
     }
 
-    .hero-content h1 {
-        font-size: 2.5rem;
+    .hero-text-stack h1 {
+        font-size: 2.4rem;
     }
 
-    .bottom-right h2 {
-        font-size: 1.8rem;
+    .hero-text-stack h2 {
+        font-size: 1.2rem;
     }
 
-    .tech-content h2,
-    .faq-content h2,
-    .cta-content h2 {
+    .features-header h2 {
         font-size: 2.2rem;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-logo {
+        font-size: 15vw;
     }
 }
 
