@@ -386,9 +386,8 @@ header>* {
     padding: 40px 0;
     cursor: grab;
     will-change: transform;
-    touch-action: pan-y;
+    touch-action: none;
     user-select: none;
-    -webkit-user-drag: none;
 }
 
 .slider-track:hover {

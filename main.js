@@ -76,8 +76,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const getTranslateX = () => {
         const style = window.getComputedStyle(track);
-        const matrix = new WebKitCSSMatrix(style.transform);
-        return matrix.m41;
+        const matrix = new DOMMatrix(style.transform);
+        return matrix.e; // Use 'e' for translateX in DOMMatrix
     };
 
     const handlePointerDown = (e) => {
@@ -87,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
         isDown = true;
         track.setPointerCapture(e.pointerId);
         track.style.animationPlayState = 'paused';
-        startX = e.pageX;
+        startX = e.clientX; // Switch to clientX
         dragOffset = getTranslateX();
         track.style.transition = 'none';
         track.classList.remove('syncing');
@@ -125,7 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const handlePointerMove = (e) => {
         if (!isDown) return;
 
-        const x = e.pageX;
+        const x = e.clientX; // Switch to clientX
         const walk = (x - startX);
         const newTransform = dragOffset + walk;
 
@@ -133,8 +133,8 @@ document.addEventListener('DOMContentLoaded', () => {
         let finalTransform = newTransform;
 
         // Wrap logic during drag
-        if (finalTransform > 0) finalTransform -= trackWidth;
-        if (finalTransform < -trackWidth) finalTransform += trackWidth;
+        while (finalTransform > 0) finalTransform -= trackWidth;
+        while (finalTransform < -trackWidth) finalTransform += trackWidth;
 
         track.style.transform = `translate3d(${finalTransform}px, 0, 0)`;
     };
