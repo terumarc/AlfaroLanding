@@ -107,7 +107,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!isDown) return;
         isDown = false;
         track.releasePointerCapture(e.pointerId);
-        document.body.style.userSelect = '';
+        track.style.pointerEvents = ''; // Restore events to track
         track.querySelectorAll('.feature-card').forEach(card => card.style.pointerEvents = '');
 
         const trackWidth = track.offsetWidth / 2;
@@ -155,7 +155,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (img) img.setAttribute('draggable', 'false');
 
         card.addEventListener('click', (e) => {
-            if (startX && Math.abs(startX - e.pageX) > 5) {
+            if (isDown || (startX && Math.abs(startX - e.clientX) > 5)) {
                 e.preventDefault();
                 e.stopPropagation();
             }
