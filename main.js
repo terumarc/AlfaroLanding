@@ -323,6 +323,22 @@ document.addEventListener('DOMContentLoaded', () => {
         saveLegalBtn.addEventListener('click', hideBanner);
     }
 
+    // Global trigger for legal modal from footer or other links
+    document.querySelectorAll('[data-open-legal]').forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const targetTab = link.getAttribute('data-tab');
+            if (legalModal) {
+                legalModal.classList.add('active');
+                // Auto switch tab if target specified
+                if (targetTab) {
+                    const tabBtn = document.querySelector(`.legal-tab[data-target="${targetTab}"]`);
+                    if (tabBtn) tabBtn.click();
+                }
+            }
+        });
+    });
+
     // Modal Tabs Logic
     const tabs = document.querySelectorAll('.legal-tab');
     const sections = document.querySelectorAll('.legal-section');
