@@ -172,7 +172,7 @@
             flex-direction: column !important;
             opacity: 0 !important;
             visibility: hidden !important;
-            border: 1px solid rgba(0,0,0,0.1) !important;
+            border: 1px solid rgba(0, 0, 0, 0.1) !important;
             transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1) !important;
         }
 
@@ -219,8 +219,17 @@
                 justify-content: flex-start !important;
                 -webkit-overflow-scrolling: touch !important;
             }
-            .tech-nav::-webkit-scrollbar { display: none !important; }
-            .tech-nav-item { flex-shrink: 0 !important; white-space: nowrap !important; font-size: 0.8rem !important; padding: 12px 20px !important; }
+
+            .tech-nav::-webkit-scrollbar {
+                display: none !important;
+            }
+
+            .tech-nav-item {
+                flex-shrink: 0 !important;
+                white-space: nowrap !important;
+                font-size: 0.8rem !important;
+                padding: 12px 20px !important;
+            }
 
             .tech-visual {
                 height: 500px !important;
@@ -314,13 +323,58 @@
         }
 
         /* [CONTACT FORM + MAP] Optimized Layout */
-        .cta-compound-wrapper { display: flex !important; gap: 60px !important; align-items: stretch !important; margin-top: 60px !important; text-align: left !important; }
-        .cta-contact-form { flex: 1.2 !important; display: flex !important; flex-direction: column !important; gap: 25px !important; margin: 0 !important; }
-        .cta-map-card { flex: 0.8 !important; background: rgba(255,255,255,0.05) !important; border: 1px solid rgba(255,255,255,0.1) !important; border-radius: 40px !important; overflow: hidden !important; backdrop-filter: blur(20px) !important; min-height: 500px !important; display: flex !important; flex-direction: column !important; }
-        .cta-map-card iframe { width: 100% !important; height: 100% !important; flex: 1 !important; border: none !important; opacity: 1 !important; border-radius: 0 0 40px 40px !important; }
-        .map-info { padding: 30px !important; color: #fff !important; }
-        .map-info h4 { margin-bottom: 10px !important; font-size: 1.3rem !important; }
-        .map-info p { opacity: 0.6 !important; font-size: 0.95rem !important; line-height: 1.5 !important; }
+        .cta-compound-wrapper {
+            display: flex !important;
+            gap: 60px !important;
+            align-items: stretch !important;
+            margin-top: 60px !important;
+            text-align: left !important;
+        }
+
+        .cta-contact-form {
+            flex: 1.2 !important;
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 25px !important;
+            margin: 0 !important;
+        }
+
+        .cta-map-card {
+            flex: 0.8 !important;
+            background: rgba(255, 255, 255, 0.05) !important;
+            border: 1px solid rgba(255, 255, 255, 0.1) !important;
+            border-radius: 40px !important;
+            overflow: hidden !important;
+            backdrop-filter: blur(20px) !important;
+            min-height: 500px !important;
+            display: flex !important;
+            flex-direction: column !important;
+        }
+
+        .cta-map-card iframe {
+            width: 100% !important;
+            height: 100% !important;
+            flex: 1 !important;
+            border: none !important;
+            opacity: 1 !important;
+            border-radius: 0 0 40px 40px !important;
+        }
+
+        .map-info {
+            padding: 30px !important;
+            color: #fff !important;
+        }
+
+        .map-info h4 {
+            margin-bottom: 10px !important;
+            font-size: 1.3rem !important;
+        }
+
+        .map-info p {
+            opacity: 0.6 !important;
+            font-size: 0.95rem !important;
+            line-height: 1.5 !important;
+        }
 
         .form-row {
             display: flex !important;
@@ -409,18 +463,51 @@
         }
 
         @media (max-width: 900px) {
-            .cta-compound-wrapper { flex-direction: column !important; gap: 40px !important; padding: 0 20px !important; }
-            .cta-map-card { min-height: 450px !important; width: 100% !important; }
-            .cta-section { padding: 100px 20px !important; height: auto !important; min-height: 100vh !important; }
-            .cta-content h2 { font-size: 3rem !important; }
-            .form-row { flex-direction: column !important; gap: 20px !important; }
-            .form-submit-btn { width: 100% !important; min-width: 100% !important; border-radius: 20px !important; }
+            .cta-compound-wrapper {
+                flex-direction: column !important;
+                gap: 40px !important;
+                padding: 0 20px !important;
+            }
+
+            .cta-map-card {
+                min-height: 450px !important;
+                width: 100% !important;
+            }
+
+            .cta-section {
+                padding: 100px 20px !important;
+                height: auto !important;
+                min-height: 100vh !important;
+            }
+
+            .cta-content h2 {
+                font-size: 3rem !important;
+            }
+
+            .form-row {
+                flex-direction: column !important;
+                gap: 20px !important;
+            }
+
+            .form-submit-btn {
+                width: 100% !important;
+                min-width: 100% !important;
+                border-radius: 20px !important;
+            }
         }
 
         @media (max-width: 600px) {
-            .cta-content h2 { font-size: 2.5rem !important; }
-            .cta-section { padding: 80px 15px !important; }
-            .map-info { padding: 20px !important; }
+            .cta-content h2 {
+                font-size: 2.5rem !important;
+            }
+
+            .cta-section {
+                padding: 80px 15px !important;
+            }
+
+            .map-info {
+                padding: 20px !important;
+            }
         }
     </style>
 </head>
@@ -456,8 +543,7 @@
         <div class="hero-wrapper">
             <div class="clipping-mask">
                 <video autoplay muted loop playsinline preload="auto" class="hero-bg">
-                    <source src="assets/hero_video_opt.mp4"
-                        type="video/mp4">
+                    <source src="assets/hero_video_opt.mp4" type="video/mp4">
                     <source src="assets/hero_bg.webm" type="video/webm">
                 </video>
                 <div class="hero-glass-overlay"></div>
@@ -583,8 +669,7 @@
 
                     <!-- Card 5: Rehabilitación oral -->
                     <div class="feature-card">
-                        <img src="assets/rehab_opt.webp"
-                            alt="Rehabilitación oral" class="card-bg">
+                        <img src="assets/rehab_opt.webp" alt="Rehabilitación oral" class="card-bg">
                         <div class="card-overlay"></div>
                         <div class="card-top">
                             <div class="header-left">
@@ -1260,9 +1345,12 @@
 
         <section id="contacto" class="cta-section">
             <img src="assets/hero_main.jpg" alt="Cinematic Portrait" class="cta-bg">
-            <div class="cta-content reveal-on-scroll" style="width: 100% !important; max-width: 1300px !important; margin: 0 auto !important;">
-                <h2 style="font-size: 5rem; line-height: 0.9; margin-bottom: 20px; font-weight: 600; text-align: center;">Contáctanos</h2>
-                
+            <div class="cta-content reveal-on-scroll"
+                style="width: 100% !important; max-width: 1300px !important; margin: 0 auto !important;">
+                <h2
+                    style="font-size: 5rem; line-height: 0.9; margin-bottom: 20px; font-weight: 600; text-align: center;">
+                    Contáctanos</h2>
+
                 <div class="cta-compound-wrapper">
                     <!-- Contact Form -->
                     <form class="cta-contact-form">
@@ -1270,7 +1358,7 @@
                             <label>Nombre *</label>
                             <input type="text" required>
                         </div>
-                        
+
                         <div class="form-row">
                             <div class="form-field">
                                 <label>Teléfono *</label>
@@ -1300,7 +1388,10 @@
 
                         <label class="privacy-wrap">
                             <input type="checkbox" required>
-                            <span>He leído y acepto la Política de privacidad.</span>
+                            <span>He leído y acepto la <a href="javascript:void(0)" data-open-legal
+                                    data-tab="form-note-sect"
+                                    style="color: inherit; text-decoration: underline;">Política de
+                                    privacidad</a>.</span>
                         </label>
 
                         <button type="submit" class="form-submit-btn">ENVIAR</button>
@@ -1312,11 +1403,9 @@
                             <h4>Nuestra Ubicación</h4>
                             <p>Gran Via de les Corts Catalanes, 192<br>08004 Barcelona</p>
                         </div>
-                        <iframe 
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2994.475658607!2d2.1448243!3d41.36531!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a4a27993000001%3A0x6185856b3e9a597e!2sGran%20Via%20de%20les%20Corts%20Catalanes%2C%20192%2C%2008004%20Barcelona!5e0!3m2!1ses!2ses!4v1711545678901!5m2!1ses!2ses" 
-                            allowfullscreen="" 
-                            loading="lazy" 
-                            referrerpolicy="no-referrer-when-downgrade">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2994.475658607!2d2.1448243!3d41.36531!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a4a27993000001%3A0x6185856b3e9a597e!2sGran%20Via%20de%20les%20Corts%20Catalanes%2C%20192%2C%2008004%20Barcelona!5e0!3m2!1ses!2ses!4v1711545678901!5m2!1ses!2ses"
+                            allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
                         </iframe>
                     </div>
                 </div>
@@ -1371,18 +1460,21 @@
 
     <!-- Contact Modal (Mirrored CTA Form) -->
     <div id="bookingModal" class="modal-overlay">
-        <div class="modal-container" style="max-width: 650px; background: rgba(10,10,10,0.95); backdrop-filter: blur(40px); border: 1px solid rgba(255,255,255,0.1); color: #fff;">
-            <button class="modal-close" id="closeModal" style="color: #fff; background: rgba(255,255,255,0.1);">&times;</button>
+        <div class="modal-container"
+            style="max-width: 650px; background: rgba(10,10,10,0.95); backdrop-filter: blur(40px); border: 1px solid rgba(255,255,255,0.1); color: #fff;">
+            <button class="modal-close" id="closeModal"
+                style="color: #fff; background: rgba(255,255,255,0.1);">&times;</button>
             <div class="modal-header">
                 <h2 style="color: #fff; margin-bottom: 5px;">Contáctanos</h2>
-                <p style="color: rgba(255,255,255,0.7) !important;">Déjanos tus datos y te llamaremos en menos de 24h.</p>
+                <p style="color: rgba(255,255,255,0.7) !important;">Déjanos tus datos y te llamaremos en menos de 24h.
+                </p>
             </div>
             <form id="bookingForm" class="cta-contact-form" style="margin-top: 20px;">
                 <div class="form-field">
                     <label>Nombre *</label>
                     <input type="text" placeholder="Ej. Ana Pérez" required>
                 </div>
-                
+
                 <div class="form-row">
                     <div class="form-field">
                         <label>Teléfono *</label>
@@ -1407,12 +1499,14 @@
 
                 <div class="form-field">
                     <label>Escribe tu mensaje</label>
-                    <textarea rows="2" style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); padding: 18px 24px; border-radius: 16px; color: #fff; width: 100%; font-family: inherit;"></textarea>
+                    <textarea rows="2"
+                        style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); padding: 18px 24px; border-radius: 16px; color: #fff; width: 100%; font-family: inherit;"></textarea>
                 </div>
 
                 <label class="privacy-wrap">
                     <input type="checkbox" required>
-                    <span>He leído y acepto la Política de privacidad.</span>
+                    <span>He leído y acepto la <a href="javascript:void(0)" data-open-legal data-tab="form-note-sect"
+                            style="color: inherit; text-decoration: underline;">Política de privacidad</a>.</span>
                 </label>
 
                 <button type="submit" class="form-submit-btn" style="width: 100%; min-width: 100%;">ENVIAR</button>
@@ -1423,7 +1517,9 @@
     <!-- Notification Banner (Refactored) -->
     <div id="sn-box" class="sn-box">
         <div class="sn-content">
-            <h3 class="sn-title" style="margin-bottom: 8px; color: #000; font-weight: 600; font-size: 1.1rem; display: block;">Privacidad y Cookies</h3>
+            <h3 class="sn-title"
+                style="margin-bottom: 8px; color: #000; font-weight: 600; font-size: 1.1rem; display: block;">Privacidad
+                y Cookies</h3>
             <p class="sn-text" style="font-size: 0.85rem; line-height: 1.5; color: #444; margin-bottom: 20px;">
                 Utilizamos cookies propias y de terceros para fines analíticos y para mostrarte publicidad personalizada
                 en base a un perfil elaborado a partir de tus hábitos de navegación.
@@ -1434,7 +1530,8 @@
                 <button class="sn-btn btn-secondary" id="sn-settings"
                     style="padding: 10px 20px; border-radius: 50px; font-size: 0.85rem; font-weight: 600; cursor: pointer; background: transparent; border: 1px solid rgba(0,0,0,0.1); color: #333;">Configurar</button>
                 <button class="sn-btn btn-primary" id="sn-accept"
-                    style="padding: 10px 20px; border-radius: 50px; font-size: 0.85rem; font-weight: 600; cursor: pointer; background: #000; color: #fff; border: 1px solid #000;">Aceptar todas</button>
+                    style="padding: 10px 20px; border-radius: 50px; font-size: 0.85rem; font-weight: 600; cursor: pointer; background: #000; color: #fff; border: 1px solid #000;">Aceptar
+                    todas</button>
             </div>
         </div>
     </div>
@@ -1447,16 +1544,43 @@
                 style="position: absolute; right: 20px; top: 15px; color: #000; background: rgba(0,0,0,0.05); border: none; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; cursor: pointer; z-index: 100;">&times;</button>
 
             <!-- Modal Tabs -->
-            <div style="display: flex; background: #f8f8f8; padding: 10px 15px 0; border-bottom: 1px solid #eee;">
+            <div
+                style="display: flex; background: #f8f8f8; padding: 10px 15px 0; border-bottom: 1px solid #eee; overflow-x: auto;">
                 <button class="legal-tab active" data-target="cookies-sect"
-                    style="padding: 15px 25px; border: none; background: #fff; border-radius: 12px 12px 0 0; font-weight: 600; cursor: pointer; margin-right: 5px; font-family: inherit;">Política
+                    style="padding: 15px 25px; border: none; background: #fff; border-radius: 12px 12px 0 0; font-weight: 600; cursor: pointer; margin-right: 5px; font-family: inherit; white-space: nowrap;">Política
                     de Cookies</button>
                 <button class="legal-tab" data-target="privacy-sect"
-                    style="padding: 15px 25px; border: none; background: transparent; border-radius: 12px 12px 0 0; font-weight: 600; cursor: pointer; font-family: inherit;">Política
+                    style="padding: 15px 25px; border: none; background: transparent; border-radius: 12px 12px 0 0; font-weight: 600; cursor: pointer; margin-right: 5px; font-family: inherit; white-space: nowrap;">Política
                     de Privacidad</button>
+                <button class="legal-tab" data-target="form-note-sect"
+                    style="padding: 15px 25px; border: none; background: transparent; border-radius: 12px 12px 0 0; font-weight: 600; cursor: pointer; font-family: inherit; white-space: nowrap;">Información
+                    Formulario</button>
             </div>
 
             <div class="legal-content-scroll" style="flex: 1; overflow-y: auto; padding: 40px; text-align: left;">
+
+                <!-- NEW SECTION: FORM NOTE -->
+                <div id="form-note-sect" class="legal-section" style="display: none;">
+                    <h3 style="font-size: 1.8rem; margin-bottom: 30px;">Nota Informativa Formulario de Contacto</h3>
+
+                    <div
+                        style="background: #fdfdfd; padding: 30px; border-radius: 16px; border: 1px solid #eee; margin-bottom: 30px;">
+                        <p style="margin-bottom: 20px;"><strong>Responsable del Tratamiento:</strong> ALFARO SERVICIOS
+                            SANITARIOS SL</p>
+                        <p style="margin-bottom: 20px;"><strong>Finalidades del Tratamiento:</strong> usaremos tus datos
+                            para agendar alguna visita y atender tus dudas, consultas y sugerencias.</p>
+                        <p style="margin-bottom: 20px;"><strong>Derechos de los interesados:</strong> Puede ejercer sus
+                            derechos de acceso, rectificacin, supresin y portabilidad de sus datos, de limitacin y
+                            oposicin a su tratamiento en <a href="mailto:infoalfarodental@gmail.com"
+                                style="color: #000; text-decoration: underline;">infoalfarodental@gmail.com</a></p>
+                        <p style="margin-bottom: 0;"><strong>Ms informacin:</strong> consulte nuestra <a
+                                href="javascript:void(0)" class="switch-legal-tab" data-target="privacy-sect"
+                                style="color: #000; text-decoration: underline;">Poltica de Privacidad</a> detallada.
+                        </p>
+                    </div>
+                    <p style="font-size: 0.9rem; color: #666;">Documento actualizado segn las directrices de proteccin
+                        de datos.</p>
+                </div>
 
                 <!-- Cookies Section -->
                 <div id="cookies-sect" class="legal-section">
@@ -1522,8 +1646,10 @@
                 </div>
 
             </div>
+        </div>
+    </div>
 
-            <script type="module" src="main.js"></script>
+    <script type="module" src="main.js"></script>
 </body>
 
 </html>

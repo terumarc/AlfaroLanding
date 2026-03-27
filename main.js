@@ -81,49 +81,49 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-    // Unified Contact Form Logic (Modal + Footer)
-    const allContactForms = document.querySelectorAll('.cta-contact-form');
-    
-    allContactForms.forEach(form => {
-        form.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const btn = form.querySelector('.form-submit-btn');
-            const originalText = btn ? btn.textContent : 'ENVIAR';
-            
-            if (btn) {
-                btn.textContent = 'Enviando...';
-                btn.disabled = true;
-                btn.style.opacity = '0.7';
-            }
+        // Unified Contact Form Logic (Modal + Footer)
+        const allContactForms = document.querySelectorAll('.cta-contact-form');
 
-            // Simulate API call
-            setTimeout(() => {
+        allContactForms.forEach(form => {
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const btn = form.querySelector('.form-submit-btn');
+                const originalText = btn ? btn.textContent : 'ENVIAR';
+
                 if (btn) {
-                    btn.textContent = '¡Mensaje Enviado!';
-                    btn.style.background = '#00ff7f';
-                    btn.style.color = '#000';
+                    btn.textContent = 'Enviando...';
+                    btn.disabled = true;
+                    btn.style.opacity = '0.7';
                 }
 
+                // Simulate API call
                 setTimeout(() => {
-                    const modal = document.getElementById('bookingModal');
-                    if (modal && modal.classList.contains('active')) {
-                        modal.classList.remove('active');
-                        document.body.style.overflow = ''; 
-                    }
-                    
                     if (btn) {
-                        btn.textContent = originalText;
-                        btn.style.background = '';
-                        btn.style.color = '';
-                        btn.disabled = false;
-                        btn.style.opacity = '1';
+                        btn.textContent = '¡Mensaje Enviado!';
+                        btn.style.background = '#00ff7f';
+                        btn.style.color = '#000';
                     }
-                    form.reset();
-                }, 2000);
-            }, 1500);
+
+                    setTimeout(() => {
+                        const modal = document.getElementById('bookingModal');
+                        if (modal && modal.classList.contains('active')) {
+                            modal.classList.remove('active');
+                            document.body.style.overflow = '';
+                        }
+
+                        if (btn) {
+                            btn.textContent = originalText;
+                            btn.style.background = '';
+                            btn.style.color = '';
+                            btn.disabled = false;
+                            btn.style.opacity = '1';
+                        }
+                        form.reset();
+                    }, 2000);
+                }, 1500);
+            });
         });
-    });
-}
+    }
 
     const track = document.querySelector('.slider-track');
 
@@ -358,22 +358,35 @@ document.addEventListener('DOMContentLoaded', () => {
     const tabs = document.querySelectorAll('.legal-tab');
     const sections = document.querySelectorAll('.legal-section');
 
+    function activateTab(tabBtn) {
+        if (!tabBtn) return;
+        const target = tabBtn.getAttribute('data-target');
+
+        // Update tabs state
+        tabs.forEach(t => {
+            t.style.background = 'transparent';
+            t.classList.remove('active');
+        });
+        tabBtn.style.background = '#fff';
+        tabBtn.classList.add('active');
+
+        // Update content visibility
+        sections.forEach(s => s.style.display = 'none');
+        const targetSect = document.getElementById(target);
+        if (targetSect) targetSect.style.display = 'block';
+    }
+
     tabs.forEach(tab => {
-        tab.addEventListener('click', () => {
-            const target = tab.getAttribute('data-target');
+        tab.addEventListener('click', () => activateTab(tab));
+    });
 
-            // Update tabs
-            tabs.forEach(t => {
-                t.style.background = 'transparent';
-                t.classList.remove('active');
-            });
-            tab.style.background = '#fff';
-            tab.classList.add('active');
-
-            // Update sections
-            sections.forEach(s => s.style.display = 'none');
-            const targetSect = document.getElementById(target);
-            if (targetSect) targetSect.style.display = 'block';
+    // Handle internal links within legal text to switch tabs
+    document.querySelectorAll('.switch-legal-tab').forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const target = link.getAttribute('data-target');
+            const tabBtn = document.querySelector(`.legal-tab[data-target="${target}"]`);
+            if (tabBtn) activateTab(tabBtn);
         });
     });
 
