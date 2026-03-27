@@ -8,6 +8,393 @@
     <meta name="description"
         content="Odontología de precisión en el corazón de la ciudad. Experimenta un cuidado que ve más allá de la superficie.">
     <link rel="stylesheet" href="index.css">
+    <style>
+        /* [DEBUG-FIX] Guaranteed Styles for sections */
+        #facilidades-wrapper {
+            background: #ffffff !important;
+            padding: 120px 20px !important;
+            color: #000 !important;
+            display: block !important;
+            position: relative;
+            z-index: 100;
+            text-align: center;
+        }
+
+        .promo-flex-grid {
+            display: flex !important;
+            flex-wrap: wrap !important;
+            gap: 30px !important;
+            max-width: 1200px !important;
+            margin: 0 auto !important;
+            justify-content: center !important;
+        }
+
+        .promo-block {
+            background: #fff !important;
+            border: 1px solid #eee !important;
+            padding: 50px 40px !important;
+            border-radius: 40px !important;
+            flex: 1 1 320px !important;
+            text-align: left !important;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.03) !important;
+            max-width: 380px !important;
+        }
+
+        .promo-block h4 {
+            color: #000 !important;
+            font-size: 1.5rem !important;
+            margin-bottom: 15px !important;
+            font-weight: 700 !important;
+        }
+
+        .promo-block p {
+            color: #555 !important;
+            line-height: 1.7 !important;
+        }
+
+        /* [TECH CAROUSEL] Premium Interactive Styles - Light Theme Adapt */
+        #tecnologia-showcase {
+            background: #fff !important;
+            padding: 120px 20px !important;
+            color: #000 !important;
+            overflow: hidden;
+        }
+
+        .tech-carousel-container {
+            display: flex !important;
+            flex-wrap: wrap !important;
+            max-width: 1400px !important;
+            margin: 60px auto 0 !important;
+            background: #f9f9f9 !important;
+            border-radius: 60px !important;
+            overflow: hidden !important;
+            min-height: 700px !important;
+            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.05) !important;
+            border: 1px solid #eee !important;
+        }
+
+        .tech-nav {
+            width: 35% !important;
+            padding: 60px !important;
+            display: flex !important;
+            flex-direction: column !important;
+            justify-content: center !important;
+            position: relative !important;
+            z-index: 10 !important;
+            gap: 15px !important;
+            background: #fff !important;
+            border-right: 1px solid #eee !important;
+        }
+
+        .tech-nav-item {
+            background: transparent !important;
+            border: 1px solid #eee !important;
+            color: #888 !important;
+            padding: 22px 30px !important;
+            border-radius: 40px !important;
+            text-align: left !important;
+            cursor: pointer !important;
+            transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) !important;
+            font-size: 0.95rem !important;
+            font-weight: 600 !important;
+            text-transform: uppercase !important;
+            letter-spacing: 1.5px !important;
+            white-space: nowrap;
+        }
+
+        .tech-nav-item.active {
+            background: #000 !important;
+            color: #fff !important;
+            border-color: #000 !important;
+            transform: scale(1.05) !important;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1) !important;
+        }
+
+        .tech-visual {
+            flex: 1 !important;
+            position: relative !important;
+            background: #fff !important;
+            overflow: hidden !important;
+            min-height: 500px !important;
+        }
+
+        .tech-visual img {
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: cover !important;
+            position: absolute !important;
+            inset: 0 !important;
+            opacity: 0 !important;
+            transition: opacity 0.8s ease, transform 1.2s ease !important;
+            transform: scale(1.1) !important;
+        }
+
+        .tech-visual img.active {
+            opacity: 1 !important;
+            transform: scale(1) !important;
+        }
+
+        .tech-overlay {
+            position: absolute !important;
+            bottom: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            padding: 50px !important;
+            background: linear-gradient(to top, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.7), transparent) !important;
+            color: #000 !important;
+            z-index: 5 !important;
+            max-height: 60% !important;
+            overflow-y: auto !important;
+            scrollbar-width: none;
+        }
+
+        .tech-overlay h4 {
+            font-size: 1.8rem !important;
+            margin-bottom: 15px !important;
+            font-weight: 700 !important;
+            color: #000 !important;
+        }
+
+        .tech-overlay p {
+            font-size: 1rem !important;
+            line-height: 1.6 !important;
+            font-weight: 400 !important;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s 0.2s ease;
+            color: #555 !important;
+        }
+
+        .tech-visual.active .tech-overlay p {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 1024px) {
+            .tech-carousel-container {
+                flex-direction: column !important;
+                min-height: auto !important;
+                border-radius: 40px !important;
+            }
+
+            .tech-nav {
+                width: 100% !important;
+                padding: 20px !important;
+                height: auto !important;
+                flex-direction: row !important;
+                overflow-x: auto !important;
+                scrollbar-width: none !important;
+                border-right: none !important;
+                border-bottom: 1px solid #eee !important;
+                gap: 12px !important;
+                -ms-overflow-style: none !important;
+                justify-content: flex-start !important;
+                -webkit-overflow-scrolling: touch !important;
+            }
+            .tech-nav::-webkit-scrollbar { display: none !important; }
+            .tech-nav-item { flex-shrink: 0 !important; white-space: nowrap !important; font-size: 0.8rem !important; padding: 12px 20px !important; }
+
+            .tech-visual {
+                height: 500px !important;
+            }
+        }
+
+        #testimonios-wrapper {
+            background: #f9f9f9 !important;
+            padding: 120px 20px !important;
+            position: relative;
+            z-index: 100 !important;
+            display: block !important;
+        }
+
+        .t-wall-grid {
+            display: grid !important;
+            grid-template-columns: repeat(3, 1fr) !important;
+            gap: 25px !important;
+            max-width: 1200px !important;
+            margin: 0 auto !important;
+        }
+
+        .t-card-fix {
+            background: #fff !important;
+            padding: 35px !important;
+            border-radius: 30px !important;
+            border: 1px solid rgba(0, 0, 0, 0.08) !important;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.04) !important;
+            display: flex !important;
+            flex-direction: column !important;
+            min-height: 280px !important;
+            height: 100% !important;
+            justify-content: space-between !important;
+        }
+
+        .t-card-fix p {
+            font-size: 1rem !important;
+            line-height: 1.7 !important;
+            color: #333 !important;
+            margin-bottom: 25px !important;
+            flex-grow: 1 !important;
+        }
+
+
+        .t-footer-fix {
+            display: flex !important;
+            align-items: center !important;
+            gap: 15px !important;
+            border-top: 1px solid #eee !important;
+            padding-top: 20px !important;
+        }
+
+        .t-avatar-fix {
+            width: 45px !important;
+            height: 45px !important;
+            border-radius: 50% !important;
+            background: #f0f0f0 !important;
+            color: #666 !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            font-weight: 700 !important;
+            font-size: 0.9rem !important;
+            border: 1px solid rgba(0, 0, 0, 0.05) !important;
+            flex-shrink: 0 !important;
+        }
+
+        .t-info-fix span {
+            display: block !important;
+        }
+
+        .t-name-fix {
+            font-weight: 700 !important;
+            color: #000 !important;
+        }
+
+        .t-role-fix {
+            font-size: 0.85rem !important;
+            color: #888 !important;
+        }
+
+        @media (max-width: 768px) {
+            .t-wall-grid {
+                grid-template-columns: 1fr !important;
+            }
+
+            .promo-flex-grid {
+                flex-direction: column !important;
+                align-items: center !important;
+            }
+        }
+
+        /* [CONTACT FORM + MAP] Optimized Layout */
+        .cta-compound-wrapper { display: flex !important; gap: 60px !important; align-items: stretch !important; margin-top: 60px !important; text-align: left !important; }
+        .cta-contact-form { flex: 1.2 !important; display: flex !important; flex-direction: column !important; gap: 25px !important; margin: 0 !important; }
+        .cta-map-card { flex: 0.8 !important; background: rgba(255,255,255,0.05) !important; border: 1px solid rgba(255,255,255,0.1) !important; border-radius: 40px !important; overflow: hidden !important; backdrop-filter: blur(20px) !important; min-height: 500px !important; display: flex !important; flex-direction: column !important; }
+        .cta-map-card iframe { width: 100% !important; height: 100% !important; flex: 1 !important; border: none !important; opacity: 1 !important; border-radius: 0 0 40px 40px !important; }
+        .map-info { padding: 30px !important; color: #fff !important; }
+        .map-info h4 { margin-bottom: 10px !important; font-size: 1.3rem !important; }
+        .map-info p { opacity: 0.6 !important; font-size: 0.95rem !important; line-height: 1.5 !important; }
+
+        .form-row {
+            display: flex !important;
+            gap: 25px !important;
+        }
+
+        .form-row .form-field {
+            flex: 1 !important;
+        }
+
+        .form-field {
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 10px !important;
+        }
+
+        .form-field input,
+        .form-field textarea {
+            background: rgba(255, 255, 255, 0.08) !important;
+            border: 1px solid rgba(255, 255, 255, 0.15) !important;
+            padding: 18px 24px !important;
+            border-radius: 16px !important;
+            color: #fff !important;
+            font-family: inherit !important;
+            font-size: 1rem !important;
+            transition: all 0.3s ease !important;
+            backdrop-filter: blur(10px) !important;
+        }
+
+        .form-field input:focus,
+        .form-field textarea:focus {
+            border-color: #fff !important;
+            background: rgba(255, 255, 255, 0.12) !important;
+            outline: none !important;
+            box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.05) !important;
+        }
+
+        .form-field label {
+            font-size: 0.9rem !important;
+            color: #fff !important;
+            font-weight: 500 !important;
+            opacity: 0.9 !important;
+            padding-left: 5px !important;
+        }
+
+        .privacy-wrap {
+            display: flex !important;
+            align-items: center !important;
+            gap: 12px !important;
+            cursor: pointer !important;
+            margin-top: 10px !important;
+        }
+
+        .privacy-wrap input[type="checkbox"] {
+            width: 22px !important;
+            height: 22px !important;
+            accent-color: #fff !important;
+            cursor: pointer !important;
+        }
+
+        .privacy-wrap span {
+            font-size: 0.95rem !important;
+            color: #fff !important;
+            opacity: 0.8 !important;
+        }
+
+        .form-submit-btn {
+            background: #fff !important;
+            color: #000 !important;
+            border: none !important;
+            padding: 22px !important;
+            border-radius: 60px !important;
+            font-weight: 700 !important;
+            font-size: 1.1rem !important;
+            cursor: pointer !important;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+            margin-top: 20px !important;
+            letter-spacing: 0.5px !important;
+            width: fit-content !important;
+            min-width: 250px !important;
+        }
+
+        .form-submit-btn:hover {
+            transform: scale(1.03) translateY(-2px) !important;
+            box-shadow: 0 10px 40px rgba(255, 255, 255, 0.2) !important;
+        }
+
+        @media (max-width: 900px) {
+            .cta-compound-wrapper { flex-direction: column !important; gap: 40px !important; padding: 0 20px !important; }
+            .cta-map-card { min-height: 450px !important; width: 100% !important; }
+            .cta-section { padding: 100px 20px !important; height: auto !important; min-height: 100vh !important; }
+            .cta-content h2 { font-size: 3rem !important; }
+            .form-row { flex-direction: column !important; gap: 20px !important; }
+            .form-submit-btn { width: 100% !important; min-width: 100% !important; border-radius: 20px !important; }
+        }
+
+        @media (max-width: 600px) {
+            .cta-content h2 { font-size: 2.5rem !important; }
+            .cta-section { padding: 80px 15px !important; }
+            .map-info { padding: 20px !important; }
+        }
+    </style>
 </head>
 
 <body>
@@ -15,10 +402,14 @@
         <header>
             <div class="logo">ALFARO DENTAL</div>
             <nav class="nav-links">
+                <a href="#tratamientos" class="nav-link">Tratamientos</a>
                 <a href="#metodo" class="nav-link">Nuestro Método</a>
-                <a href="#tecnologia" class="nav-link">Tecnología</a>
-                <a href="#cuidado" class="nav-link">Cuidado Personal</a>
+                <a href="#tecnologia-showcase" class="nav-link">Tecnología</a>
+                <a href="#facilidades-wrapper" class="nav-link">Facilidades</a>
+                <a href="#testimonios-wrapper" class="nav-link">Testimonios</a>
                 <a href="#faq" class="nav-link">FAQ</a>
+                <a href="#equipo" class="nav-link">Equipo</a>
+                <a href="#contacto" class="nav-link">Contacto</a>
             </nav>
             <div class="header-cta-wrapper">
                 <a href="#" class="header-cta">
@@ -66,7 +457,7 @@
     </div>
 
     <div class="content-wrapper">
-        <section class="section-light">
+        <section id="tratamientos" class="section-light">
             <div class="features-header">
                 <div class="badge">
                     <span>✦</span>
@@ -518,69 +909,167 @@
                         especial énfasis en la salud oral de los más pequeños a través de nuestro servicio de
                         odontopediatría, atendiendo las necesidades específicas de niños y adolescentes.</p>
                     <p>Trabajamos desde la prevención para generar hábitos saludables de por vida, creando un entorno
-                        seguro y agradable donde las visitas al dentista sean una experiencia positiva. Apostar por
-                        nosotros es garantizar el cuidado que tu salud oral merece.</p>
+                        seguro y agradable donde las visitas al dentista sean una experiencia positiva.</p>
                 </div>
                 <div class="tech-image reveal-on-scroll">
                     <video autoplay muted loop playsinline preload="auto"
                         style="width: 100%; height: 100%; object-fit: cover; transform: translateZ(0);">
                         <source src="assets/care_bg.webm" type="video/webm">
-                        <source src="assets/6338364_Background Soft Silk Satin_By_MayaLab_Artlist_HD.mp4"
-                            type="video/mp4">
                     </video>
                 </div>
             </div>
         </section>
 
-        <section id="opiniones" class="section-light">
-            <div class="features-header reveal-on-scroll"
-                style="display: flex; flex-direction: column; align-items: center; text-align: center; margin-bottom: 80px;">
-                <div class="badge"><span>✦</span> Testimonios</div>
-                <h2>Lo que dicen nuestros pacientes.</h2>
+        <!-- Section: Tecnología Avanzada (Interactive Carousel) -->
+        <section id="tecnologia-showcase" class="reveal-on-scroll">
+            <div style="max-width: 900px; margin: 0 auto; text-align: center;">
+                <div class="badge" style="margin: 0 auto 30px; border-color: rgba(0,0,0,0.15); color: #000;">✦
+                    Innovación Digital</div>
+                <h2 style="font-size: 3.5rem; color: #000; margin-bottom: 30px; line-height: 1.1; font-weight: 700;">
+                    Tecnología de vanguardia en Sants/Montjuic</h2>
+                <p style="font-size: 1.25rem; color: #555; line-height: 1.8; margin-bottom: 30px;">Estar al tanto de los
+                    últimos avances tecnológicos e incorporarlos a las instalaciones de la clínica dental es fundamental
+                    para poder ofrecer un servicio de asistencia odontológica de calidad.</p>
+                <p style="color: #888; line-height: 1.7; max-width: 800px; margin: 0 auto;">Este es nuestro empeño en
+                    Alfaro Clínica Dental, tu centro odontológico de referencia en Sants/Montjuic (Barcelona).
+                    Conscientes de la importancia de la tecnología para poder efectuar un diagnóstico de precisión y una
+                    correcta aplicación de cada tratamiento, nos esmeramos por mantenernos al tanto y equipar nuestros
+                    gabinetes con lo último en tecnología.</p>
             </div>
 
-            <div class="reviews-grid reveal-on-scroll">
-                <div class="review-card">
-                    <div class="review-header">
-                        <div class="stars">★★★★★</div>
-                        <span class="source">Google</span>
+            <div class="tech-carousel-container">
+                <!-- Tabs Nav -->
+                <div class="tech-nav" id="tech-nav-list">
+                    <button class="tech-nav-item active" data-index="0">TAC 3D</button>
+                    <button class="tech-nav-item" data-index="1">Ortopantomografía</button>
+                    <button class="tech-nav-item" data-index="2">Telerradiografía</button>
+                    <button class="tech-nav-item" data-index="3">Osstell</button>
+                    <button class="tech-nav-item" data-index="4">Philips ZOOM</button>
+                </div>
+
+                <!-- Visual Content -->
+                <div class="tech-visual active" id="tech-visual-stage">
+                    <img src="assets/tech-tac-3d.jpg" class="active" data-index="0">
+                    <img src="assets/tech-ortopantomografia.jpg" data-index="1">
+                    <img src="assets/tech-telerradiografia.jpg" data-index="2">
+                    <img src="assets/tech-osstell.jpg" data-index="3">
+                    <img src="assets/tech-philips-zoom.jpg" data-index="4">
+
+                    <div class="tech-overlay">
+                        <h4 id="tech-title">TAC 3D</h4>
+                        <p id="tech-desc">La tomografía axial computarizada dental (TAC) es un tipo especial de equipo
+                            de rayos X con el que obtenemos impresiones precisas de la anatomía bucal. Las
+                            reconstrucciones maxilares en 3D ayudan enormemente a planificar las intervenciones con gran
+                            precisión.</p>
                     </div>
-                    <p class="review-text">"Excelente trato y profesionalidad. Me explicaron todo el proceso de mi
-                        tratamiento con mucha claridad y transparencia. Muy recomendables."</p>
-                    <div class="reviewer">
-                        <div class="reviewer-info">
-                            <span class="name">Marta García</span>
-                            <span class="date">Hace 2 meses</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Facilidades y Promociones (Sanitized) -->
+        <section id="facilidades-wrapper" class="reveal-on-scroll">
+            <div style="max-width: 800px; margin: 0 auto 80px;">
+                <div class="badge" style="margin: 0 auto 30px; border-color: #000; color: #000;">✦ Promociones
+                    Permanentes</div>
+                <h2 style="font-size: 3.5rem; color: #000; margin-bottom: 20px; font-weight: 700;">Descubre nuestras
+                    facilidades</h2>
+                <h3 style="color: #666; font-size: 1.5rem; margin-bottom: 30px; font-weight: 400;">Las mejores
+                    prestaciones a tu alcance</h3>
+                <p style="color: #444; line-height: 1.8; font-size: 1.1rem;">En Alfaro Clínica Dental nos gusta
+                    ponértelo muy fácil para que puedas cuidar de tu sonrisa sin límites, ¡tal y como se merece!</p>
+            </div>
+
+            <div class="promo-flex-grid">
+                <div class="promo-block">
+                    <h4>Implantes Dentales</h4>
+                    <p>Lanzamos descuentos especiales de forma puntual para reponer tu sonrisa ante la pérdida con la
+                        máxima calidad.</p>
+                </div>
+                <div class="promo-block">
+                    <h4>Ortodoncia Integral</h4>
+                    <p>Corregimos problemas de mordida y malposición con todos los tipos de ortodoncia avanzada.</p>
+                </div>
+                <div class="promo-block">
+                    <h4>Estética y Blanqueamiento</h4>
+                    <p>Opciones para recuperar el blanco natural y embellecer tu sonrisa con resultados profesionales.
+                    </p>
+                </div>
+            </div>
+
+            <div style="margin-top: 60px;">
+                <p style="font-weight: 600; color: #000;">Disfruta de todas las facilidades para cuidar de tu salud
+                    oral.</p>
+            </div>
+        </section>
+
+        <!-- Section: Testimonios (Sanitized) -->
+        <section id="testimonios-wrapper" class="reveal-on-scroll">
+            <div style="text-align: center; margin-bottom: 80px;">
+                <div class="badge" style="margin: 0 auto 20px;">✦ Testimonios</div>
+                <h2 style="font-size: 3rem; color: #000; font-weight: 700;">Lo que dicen nuestros pacientes.</h2>
+            </div>
+
+            <div class="t-wall-grid">
+                <!-- Col 1 -->
+                <div class="t-column" style="display: flex; flex-direction: column; gap: 25px;">
+                    <div class="t-card-fix">
+                        <p>"Excelente trato y profesionalidad. Me explicaron todo el proceso con mucha claridad y
+                            transparencia. ¡Muy recomendables!"</p>
+                        <div class="t-footer-fix">
+                            <div class="t-avatar-fix">MG</div>
+                            <div class="t-info-fix"><span class="t-name-fix">Marta García</span><span
+                                    class="t-role-fix">Paciente Habitual</span></div>
+                        </div>
+                    </div>
+                    <div class="t-card-fix">
+                        <p>"Fui por una limpieza y acabé siguiendo un tratamiento completo. La tecnología digital que
+                            usan facilita mucho entender cada paso."</p>
+                        <div class="t-footer-fix">
+                            <div class="t-avatar-fix">LS</div>
+                            <div class="t-info-fix"><span class="t-name-fix">Laura Soler</span><span
+                                    class="t-role-fix">Profesora</span></div>
                         </div>
                     </div>
                 </div>
-
-                <div class="review-card">
-                    <div class="review-header">
-                        <div class="stars">★★★★★</div>
-                        <span class="source">Google</span>
+                <!-- Col 2 -->
+                <div class="t-column" style="display: flex; flex-direction: column; gap: 25px;">
+                    <div class="t-card-fix">
+                        <p>"La mejor clínica de Sants. Fui por una urgencia y la atención fue inmediata y maravillosa.
+                            Resolvieron mi dolor en la misma cita."</p>
+                        <div class="t-footer-fix">
+                            <div class="t-avatar-fix">JF</div>
+                            <div class="t-info-fix"><span class="t-name-fix">Jordi Font</span><span
+                                    class="t-role-fix">Empresario</span></div>
+                        </div>
                     </div>
-                    <p class="review-text">"La mejor clínica dental de Sants. Fui por una urgencia y me atendieron de
-                        maravilla. El equipo es muy humano y las instalaciones impecables."</p>
-                    <div class="reviewer">
-                        <div class="reviewer-info">
-                            <span class="name">Jordi Font</span>
-                            <span class="date">Hace 1 mes</span>
+                    <div class="t-card-fix">
+                        <p>"Un equipo fantástico. Me sentí muy seguro durante todo mi tratamiento de implantes de
+                            precisión en Barcelona."</p>
+                        <div class="t-footer-fix">
+                            <div class="t-avatar-fix">RS</div>
+                            <div class="t-info-fix"><span class="t-name-fix">Ricardo Sanz</span><span
+                                    class="t-role-fix">Ingeniero</span></div>
                         </div>
                     </div>
                 </div>
-
-                <div class="review-card">
-                    <div class="review-header">
-                        <div class="stars">★★★★★</div>
-                        <span class="source">Google</span>
+                <!-- Col 3 -->
+                <div class="t-column" style="display: flex; flex-direction: column; gap: 25px;">
+                    <div class="t-card-fix">
+                        <p>"Llevé a mis hijos para su primera revisión y la experiencia fue genial. Tienen un trato
+                            inmejorable con los más pequeños."</p>
+                        <div class="t-footer-fix">
+                            <div class="t-avatar-fix">ER</div>
+                            <div class="t-info-fix"><span class="t-name-fix">Elena Rius</span><span
+                                    class="t-role-fix">Madre</span></div>
+                        </div>
                     </div>
-                    <p class="review-text">"Llevé a mis hijos para su primera revisión y fue una experiencia genial. No
-                        tuvieron nada de miedo. Gran servicio de odontopediatría."</p>
-                    <div class="reviewer">
-                        <div class="reviewer-info">
-                            <span class="name">Elena Rius</span>
-                            <span class="date">Hace 3 semanas</span>
+                    <div class="t-card-fix">
+                        <p>"Limpio, moderno y con instalaciones de vanguardia. Noté la diferencia desde el primer minuto
+                            que entré en la clínica."</p>
+                        <div class="t-footer-fix">
+                            <div class="t-avatar-fix">CR</div>
+                            <div class="t-info-fix"><span class="t-name-fix">Carlos Ruiz</span><span
+                                    class="t-role-fix">Mecánico</span></div>
                         </div>
                     </div>
                 </div>
@@ -741,23 +1230,68 @@
             </div>
         </section>
 
-        <section class="cta-section">
+        <section id="contacto" class="cta-section">
             <img src="assets/hero_main.jpg" alt="Cinematic Portrait" class="cta-bg">
-            <div class="cta-content reveal-on-scroll">
-                <h2>Respaldado por Datos.<br>Diseñado para la Complejidad.<br>Creado para Ti.</h2>
-                <p>Únete a la lista de espera para acceso anticipado, beneficios de miembro fundador y ofertas
-                    exclusivas de
-                    lanzamiento.</p>
-                <a href="#" class="btn-white">
-                    Unirse a la lista
-                    <div class="icon-circle-black">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                            <line x1="7" y1="17" x2="17" y2="7"></line>
-                            <polyline points="7 7 17 7 17 17"></polyline>
-                        </svg>
+            <div class="cta-content reveal-on-scroll" style="width: 100% !important; max-width: 1300px !important; margin: 0 auto !important;">
+                <h2 style="font-size: 5rem; line-height: 0.9; margin-bottom: 20px; font-weight: 600; text-align: center;">Contáctanos</h2>
+                
+                <div class="cta-compound-wrapper">
+                    <!-- Contact Form -->
+                    <form class="cta-contact-form">
+                        <div class="form-field">
+                            <label>Nombre *</label>
+                            <input type="text" required>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-field">
+                                <label>Teléfono *</label>
+                                <input type="tel" required>
+                            </div>
+                            <div class="form-field">
+                                <label>Email *</label>
+                                <input type="email" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-field">
+                                <label>Motivo de la consulta</label>
+                                <input type="text">
+                            </div>
+                            <div class="form-field">
+                                <label>Cita solicitada</label>
+                                <input type="text">
+                            </div>
+                        </div>
+
+                        <div class="form-field">
+                            <label>Escribe tu mensaje</label>
+                            <textarea rows="2"></textarea>
+                        </div>
+
+                        <label class="privacy-wrap">
+                            <input type="checkbox" required>
+                            <span>He leído y acepto la Política de privacidad.</span>
+                        </label>
+
+                        <button type="submit" class="form-submit-btn">ENVIAR</button>
+                    </form>
+
+                    <!-- Google Maps Card -->
+                    <div class="cta-map-card">
+                        <div class="map-info">
+                            <h4>Nuestra Ubicación</h4>
+                            <p>Gran Via de les Corts Catalanes, 192<br>08004 Barcelona</p>
+                        </div>
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2994.475658607!2d2.1448243!3d41.36531!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a4a27993000001%3A0x6185856b3e9a597e!2sGran%20Via%20de%20les%20Corts%20Catalanes%2C%20192%2C%2008004%20Barcelona!5e0!3m2!1ses!2ses!4v1711545678901!5m2!1ses!2ses" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
                     </div>
-                </a>
+                </div>
             </div>
         </section>
 
@@ -855,7 +1389,117 @@
         </div>
     </div>
 
-    <script type="module" src="main.js"></script>
+    <!-- Notification Banner (Inline Styled) -->
+    <div id="sn-box" class="sn-box show"
+        style="position: fixed !important; bottom: 40px !important; left: 50% !important; transform: translateX(-50%) !important; 
+                width: 90% !important; max-width: 580px !important; background: #ffffff !important; border-radius: 24px !important; 
+                padding: 24px !important; box-shadow: 0 30px 100px rgba(0, 0, 0, 0.4) !important; z-index: 2147483647 !important; 
+                display: flex; flex-direction: column !important; opacity: 1 !important; visibility: visible !important; border: 1px solid rgba(0,0,0,0.1) !important;">
+        <div class="sn-content">
+            <h3 class="sn-title"
+                style="margin-bottom: 8px; color: #000; font-weight: 600; font-size: 1.1rem; display: block;">Privacidad
+                y Cookies</h3>
+            <p class="sn-text" style="font-size: 0.85rem; line-height: 1.5; color: #444; margin-bottom: 20px;">
+                Utilizamos cookies propias y de terceros para fines analíticos y para mostrarte publicidad personalizada
+                en base a un perfil elaborado a partir de tus hábitos de navegación.
+                Encontrarás más información en nuestra <a href="javascript:void(0)" id="open-cookies"
+                    style="text-decoration: underline; color: #111;">Política de Privacidad y Cookies</a>.
+            </p>
+            <div class="sn-actions" style="display: flex; gap: 12px; justify-content: flex-end;">
+                <button class="sn-btn btn-secondary" id="sn-settings"
+                    style="padding: 10px 20px; border-radius: 50px; font-size: 0.85rem; font-weight: 600; cursor: pointer; background: transparent; border: 1px solid rgba(0,0,0,0.1); color: #333;">Configurar</button>
+                <button class="sn-btn btn-primary" id="sn-accept"
+                    style="padding: 10px 20px; border-radius: 50px; font-size: 0.85rem; font-weight: 600; cursor: pointer; background: #000; color: #fff; border: 1px solid #000;">Aceptar
+                    todas</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dual Legal Modal (Cookies & Privacy) -->
+    <div id="legalModal" class="modal-overlay">
+        <div class="modal-container"
+            style="max-width: 850px; height: 90vh; display: flex; flex-direction: column; background: #fff; color: #000; padding: 0; overflow: hidden; border-radius: 32px;">
+            <button class="modal-close" id="closeLegalModal"
+                style="position: absolute; right: 20px; top: 15px; color: #000; background: rgba(0,0,0,0.05); border: none; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; cursor: pointer; z-index: 100;">&times;</button>
+
+            <!-- Modal Tabs -->
+            <div style="display: flex; background: #f8f8f8; padding: 10px 15px 0; border-bottom: 1px solid #eee;">
+                <button class="legal-tab active" data-target="cookies-sect"
+                    style="padding: 15px 25px; border: none; background: #fff; border-radius: 12px 12px 0 0; font-weight: 600; cursor: pointer; margin-right: 5px; font-family: inherit;">Política
+                    de Cookies</button>
+                <button class="legal-tab" data-target="privacy-sect"
+                    style="padding: 15px 25px; border: none; background: transparent; border-radius: 12px 12px 0 0; font-weight: 600; cursor: pointer; font-family: inherit;">Política
+                    de Privacidad</button>
+            </div>
+
+            <div class="legal-content-scroll" style="flex: 1; overflow-y: auto; padding: 40px; text-align: left;">
+
+                <!-- Cookies Section -->
+                <div id="cookies-sect" class="legal-section">
+                    <h2 style="font-size: 1.8rem; margin-bottom: 20px;">Política de Cookies</h2>
+                    <p style="color: #444; margin-bottom: 20px;">Cookie es un fichero que se descarga en su ordenador al
+                        acceder a determinadas páginas web. Las cookies permiten a una página web, entre otras cosas,
+                        almacenar y recuperar información sobre los hábitos de navegación de un usuario o de su equipo.
+                    </p>
+
+                    <h3 style="color: #000; font-size: 1.1rem; margin: 25px 0 10px;">LAS COOKIES QUE USAMOS</h3>
+                    <div
+                        style="background: #fdfdfd; border: 1px solid #f0f0f0; padding: 20px; border-radius: 16px; margin-bottom: 25px;">
+                        <p style="margin-bottom: 10px;"><strong>Técnicas (Obligatorias):</strong> Necesarias para la
+                            navegación y el buen funcionamiento de nuestra web.</p>
+                        <p style="margin-bottom: 10px;"><strong>Análisis:</strong> Google Analytics: Elaborar
+                            estadísticas sobre el tráfico y volumen de visitas.</p>
+                        <p><strong>Personalización:</strong> Recordar información para diferenciar su experiencia.</p>
+                    </div>
+
+                    <h3 style="color: #000; font-size: 1.1rem; margin: 25px 0 15px;">PANEL DE CONFIGURACIÓN</h3>
+                    <div
+                        style="background: #f8f8fb; border: 1px solid #e0e0e0; padding: 25px; border-radius: 20px; margin-bottom: 20px;">
+                        <div
+                            style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                            <div><strong>Analíticas</strong>
+                                <p style="font-size: 0.75rem; color: #777;">Permitir seguimiento de rendimiento.</p>
+                            </div>
+                            <input type="checkbox" checked style="width: 22px; height: 22px; accent-color: #000;">
+                        </div>
+                        <div
+                            style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px;">
+                            <div><strong>Publicidad</strong>
+                                <p style="font-size: 0.75rem; color: #777;">Cookies publicitarias personalizadas.</p>
+                            </div>
+                            <input type="checkbox" checked style="width: 22px; height: 22px; accent-color: #000;">
+                        </div>
+                        <button id="save-sn-config"
+                            style="width: 100%; padding: 15px; background: #000; color: #fff; border: none; border-radius: 50px; font-weight: 600; cursor: pointer;">Guardar
+                            Selección</button>
+                    </div>
+                </div>
+
+                <!-- Privacy Section -->
+                <div id="privacy-sect" class="legal-section" style="display: none;">
+                    <h2 style="font-size: 1.8rem; margin-bottom: 20px;">Política de Privacidad</h2>
+                    <p style="line-height: 1.6; color: #444; margin-bottom: 20px;">Esta Política de Privacidad se ajusta
+                        a la Ley Orgánica de Protección de Datos y el Reglamento Europeo 2016/679 (RGPD).</p>
+
+                    <h3 style="color: #000; font-size: 1.1rem; margin: 25px 0 10px;">Responsable del Tratamiento</h3>
+                    <p style="margin-bottom: 5px;"><strong>Denominación:</strong> ALFARO SERVICIOS SANITARIOS SL</p>
+                    <p style="margin-bottom: 5px;"><strong>Dirección:</strong> Gran Via de les Corts Catalanes, 192,
+                        Local B1 - 08008, Barcelona</p>
+                    <p style="margin-bottom: 5px;"><strong>Email:</strong> infoalfarodental@gmail.com</p>
+
+                    <h3 style="color: #000; font-size: 1.1rem; margin: 25px 0 10px;">Finalidades</h3>
+                    <p style="line-height: 1.6; color: #444;">Tratamos los datos para atender sus solicitudes y
+                        gestionar citas. Los datos se conservarán mientras sean necesarios para la finalidad de su
+                        recogida.</p>
+
+                    <h3 style="color: #000; font-size: 1.1rem; margin: 25px 0 10px;">Sus Derechos</h3>
+                    <p style="line-height: 1.6; color: #444;">Usted tiene derecho a acceso, rectificación, supresión y
+                        portabilidad de sus datos. Puede ejercerlos enviando un email a infoalfarodental@gmail.com.</p>
+                </div>
+
+            </div>
+
+            <script type="module" src="main.js"></script>
 </body>
 
 </html>

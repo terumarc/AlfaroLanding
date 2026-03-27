@@ -54,146 +54,150 @@ document.addEventListener('DOMContentLoaded', () => {
     const bookingForm = document.getElementById('bookingForm');
     const dateInput = document.getElementById('appointmentDate');
 
-    // Set min date to today
-    const today = new Date().toISOString().split('T')[0];
-    if (dateInput) dateInput.setAttribute('min', today);
+    if (modal) {
+        // Set min date to today
+        const today = new Date().toISOString().split('T')[0];
+        if (dateInput) dateInput.setAttribute('min', today);
 
-    openBtns.forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            e.preventDefault();
-            modal.classList.add('active');
-            document.body.style.overflow = 'hidden'; // Prevent scrolling when modal is open
+        openBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden'; // Prevent scrolling when modal is open
+            });
         });
-    });
 
-    const closeModal = () => {
-        modal.classList.remove('active');
-        document.body.style.overflow = ''; // Restore scrolling
-    };
+        const closeModal = () => {
+            modal.classList.remove('active');
+            document.body.style.overflow = ''; // Restore scrolling
+        };
 
-    closeBtn.addEventListener('click', closeModal);
+        if (closeBtn) closeBtn.addEventListener('click', closeModal);
 
-    // Close on outside click
-    modal.addEventListener('click', (e) => {
-        if (e.target === modal) {
-            closeModal();
-        }
-    });
-
-    // Form Submission
-    bookingForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const btn = bookingForm.querySelector('.form-submit');
-        btn.textContent = 'Enviando...';
-
-        // Simulate API call
-        setTimeout(() => {
-            btn.textContent = '¡Solicitud Enviada!';
-            btn.style.background = '#00ff00';
-            btn.style.color = '#000';
-
-            setTimeout(() => {
+        // Close on outside click
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
                 closeModal();
-                btn.textContent = 'Enviar Solicitud';
-                btn.style.background = '#fff';
-                bookingForm.reset();
-            }, 2000);
-        }, 1500);
-    });
+            }
+        });
+
+        if (bookingForm) {
+            // Form Submission
+            bookingForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const btn = bookingForm.querySelector('.form-submit');
+                if (btn) btn.textContent = 'Enviando...';
+
+                // Simulate API call
+                setTimeout(() => {
+                    if (btn) {
+                        btn.textContent = '¡Solicitud Enviada!';
+                        btn.style.background = '#00ff00';
+                        btn.style.color = '#000';
+                    }
+
+                    setTimeout(() => {
+                        closeModal();
+                        if (btn) {
+                            btn.textContent = 'Enviar Solicitud';
+                            btn.style.background = '#fff';
+                        }
+                        bookingForm.reset();
+                    }, 2000);
+                }, 1500);
+            });
+        }
+    }
 
     const track = document.querySelector('.slider-track');
-    let isDown = false;
-    let startX;
-    let dragOffset = 0;
-    const duration = 80000; // Sync with CSS 80s
 
-    const getTranslateX = () => {
-        const style = window.getComputedStyle(track);
-        const matrix = new DOMMatrix(style.transform);
-        return matrix.e; // Use 'e' for translateX in DOMMatrix
-    };
+    if (track) {
+        let isDown = false;
+        let startX;
+        let dragOffset = 0;
+        const duration = 80000; // Sync with CSS 80s
 
-    const handlePointerDown = (e) => {
-        // Only trigger on left mouse button or touch
-        if (e.pointerType === 'mouse' && e.button !== 0) return;
+        const getTranslateX = () => {
+            const style = window.getComputedStyle(track);
+            const matrix = new DOMMatrix(style.transform);
+            return matrix.e; // Use 'e' for translateX in DOMMatrix
+        };
 
-        isDown = true;
-        track.setPointerCapture(e.pointerId);
+        const handlePointerDown = (e) => {
+            if (e.pointerType === 'mouse' && e.button !== 0) return;
 
-        // Remove animation during drag to prevent conflicts with transform
-        const currentTransform = getTranslateX();
-        track.style.animation = 'none';
-        track.style.transform = `translate3d(${currentTransform}px, 0, 0)`;
+            isDown = true;
+            track.setPointerCapture(e.pointerId);
 
-        startX = e.clientX;
-        dragOffset = currentTransform;
-        track.style.transition = 'none';
-        track.classList.remove('syncing');
+            const currentTransform = getTranslateX();
+            track.style.animation = 'none';
+            track.style.transform = `translate3d(${currentTransform}px, 0, 0)`;
 
-        // Disable text selection and card pointer events during drag
-        document.body.style.userSelect = 'none';
-        track.style.pointerEvents = 'none'; // Temporarily disable events to sub-elements
-        track.querySelectorAll('.feature-card').forEach(card => card.style.pointerEvents = 'none');
-    };
+            startX = e.clientX;
+            dragOffset = currentTransform;
+            track.style.transition = 'none';
+            track.classList.remove('syncing');
 
-    const handlePointerUp = (e) => {
-        if (!isDown) return;
-        isDown = false;
-        track.releasePointerCapture(e.pointerId);
-        track.style.pointerEvents = ''; // Restore events to track
-        track.querySelectorAll('.feature-card').forEach(card => card.style.pointerEvents = '');
+            document.body.style.userSelect = 'none';
+            track.style.pointerEvents = 'none';
+            track.querySelectorAll('.feature-card').forEach(card => card.style.pointerEvents = 'none');
+        };
 
-        const trackWidth = track.offsetWidth / 2;
-        let currentX = getTranslateX();
+        const handlePointerUp = (e) => {
+            if (!isDown) return;
+            isDown = false;
+            track.releasePointerCapture(e.pointerId);
+            track.style.pointerEvents = '';
+            track.querySelectorAll('.feature-card').forEach(card => card.style.pointerEvents = '');
 
-        // Normalize position to [-trackWidth, 0] for seamless wrap
-        while (currentX > 0) currentX -= trackWidth;
-        while (currentX < -trackWidth) currentX += trackWidth;
+            const trackWidth = track.offsetWidth / 2;
+            let currentX = getTranslateX();
 
-        const progress = Math.abs(currentX / trackWidth);
-        const newDelay = -(progress * duration);
+            while (currentX > 0) currentX -= trackWidth;
+            while (currentX < -trackWidth) currentX += trackWidth;
 
-        // Restore animation state
-        track.style.transform = '';
-        track.style.animation = `ticker ${duration}ms linear infinite`;
-        track.style.animationDelay = `${newDelay}ms`;
-        track.style.animationPlayState = 'running';
-    };
+            const progress = Math.abs(currentX / trackWidth);
+            const newDelay = -(progress * duration);
 
-    const handlePointerMove = (e) => {
-        if (!isDown) return;
+            track.style.transform = '';
+            track.style.animation = `ticker ${duration}ms linear infinite`;
+            track.style.animationDelay = `${newDelay}ms`;
+            track.style.animationPlayState = 'running';
+        };
 
-        const x = e.clientX; // Switch to clientX
-        const walk = (x - startX);
-        const newTransform = dragOffset + walk;
+        const handlePointerMove = (e) => {
+            if (!isDown) return;
 
-        const trackWidth = track.offsetWidth / 2;
-        let finalTransform = newTransform;
+            const x = e.clientX;
+            const walk = (x - startX);
+            const newTransform = dragOffset + walk;
 
-        // Wrap logic during drag
-        while (finalTransform > 0) finalTransform -= trackWidth;
-        while (finalTransform < -trackWidth) finalTransform += trackWidth;
+            const trackWidth = track.offsetWidth / 2;
+            let finalTransform = newTransform;
 
-        track.style.transform = `translate3d(${finalTransform}px, 0, 0)`;
-    };
+            while (finalTransform > 0) finalTransform -= trackWidth;
+            while (finalTransform < -trackWidth) finalTransform += trackWidth;
 
-    // Unified Pointer Events
-    track.addEventListener('pointerdown', handlePointerDown);
-    track.addEventListener('pointermove', handlePointerMove);
-    track.addEventListener('pointerup', handlePointerUp);
-    track.addEventListener('pointercancel', handlePointerUp);
+            track.style.transform = `translate3d(${finalTransform}px, 0, 0)`;
+        };
 
-    track.querySelectorAll('.feature-card').forEach(card => {
-        const img = card.querySelector('img');
-        if (img) img.setAttribute('draggable', 'false');
+        track.addEventListener('pointerdown', handlePointerDown);
+        track.addEventListener('pointermove', handlePointerMove);
+        track.addEventListener('pointerup', handlePointerUp);
+        track.addEventListener('pointercancel', handlePointerUp);
 
-        card.addEventListener('click', (e) => {
-            if (isDown || (startX && Math.abs(startX - e.clientX) > 5)) {
-                e.preventDefault();
-                e.stopPropagation();
-            }
-        }, true);
-    });
+        track.querySelectorAll('.feature-card').forEach(card => {
+            const img = card.querySelector('img');
+            if (img) img.setAttribute('draggable', 'false');
+
+            card.addEventListener('click', (e) => {
+                if (isDown || (startX && Math.abs(startX - e.clientX) > 5)) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                }
+            }, true);
+        });
+    }
 
     // 3D Team Carousel Logic
     const teamCarousel = document.querySelector('.carousel-3d');
@@ -228,15 +232,19 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         };
 
-        teamNext.addEventListener('click', () => {
-            currentTeamIndex = (currentTeamIndex + 1) % 4;
-            updateTeamCarousel();
-        });
+        if (teamNext) {
+            teamNext.addEventListener('click', () => {
+                currentTeamIndex = (currentTeamIndex + 1) % 4;
+                updateTeamCarousel();
+            });
+        }
 
-        teamPrev.addEventListener('click', () => {
-            currentTeamIndex = (currentTeamIndex - 1 + 4) % 4;
-            updateTeamCarousel();
-        });
+        if (teamPrev) {
+            teamPrev.addEventListener('click', () => {
+                currentTeamIndex = (currentTeamIndex - 1 + 4) % 4;
+                updateTeamCarousel();
+            });
+        }
 
         // Optional: Auto-rotation
         let teamAutoRotate = setInterval(() => {
@@ -246,12 +254,162 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Pause on hover
         const teamSection = document.querySelector('.team-section');
-        teamSection.addEventListener('mouseenter', () => clearInterval(teamAutoRotate));
-        teamSection.addEventListener('mouseleave', () => {
-            teamAutoRotate = setInterval(() => {
-                currentTeamIndex = (currentTeamIndex + 1) % totalTeamItems;
-                updateTeamCarousel();
-            }, 5000);
-        });
+        if (teamSection) {
+            teamSection.addEventListener('mouseenter', () => clearInterval(teamAutoRotate));
+            teamSection.addEventListener('mouseleave', () => {
+                teamAutoRotate = setInterval(() => {
+                    currentTeamIndex = (currentTeamIndex + 1) % totalTeamSlots;
+                    updateTeamCarousel();
+                }, 5000);
+            });
+        }
     }
 });
+
+// --- System Notification Logic (Guaranteed Execution) ---
+(function () {
+    console.log("Alfaro Notification Script: Loaded");
+    // alert("Script Alfaro Cargado"); // Debug Alert
+    const banner = document.getElementById('sn-box');
+    const btnAccept = document.getElementById('sn-accept');
+    const btnSettings = document.getElementById('sn-settings');
+    const openCookiesLink = document.getElementById('open-cookies');
+    const legalModal = document.getElementById('legalModal');
+    const closeLegalBtn = document.getElementById('closeLegalModal');
+    const saveLegalBtn = document.getElementById('save-sn-config');
+
+    const STORAGE_KEY = 'alfaro-legal-consent-prod';
+    // localStorage.removeItem(STORAGE_KEY); // Uncomment this to reset for user testing if they can't see it once
+
+    function hideBanner() {
+        localStorage.setItem(STORAGE_KEY, 'true');
+        if (banner) banner.style.display = 'none';
+        if (legalModal) legalModal.classList.remove('active');
+    }
+
+    if (banner) {
+        if (!localStorage.getItem(STORAGE_KEY)) {
+            banner.style.display = 'flex';
+            setTimeout(() => banner.classList.add('show'), 100);
+        } else {
+            banner.style.display = 'none';
+        }
+
+        if (btnAccept) {
+            btnAccept.addEventListener('click', hideBanner);
+        }
+
+        if (btnSettings) {
+            btnSettings.addEventListener('click', () => {
+                if (legalModal) legalModal.classList.add('active');
+            });
+        }
+    }
+
+    if (openCookiesLink) {
+        openCookiesLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (legalModal) legalModal.classList.add('active');
+        });
+    }
+
+    if (closeLegalBtn) {
+        closeLegalBtn.addEventListener('click', () => {
+            if (legalModal) legalModal.classList.remove('active');
+        });
+    }
+
+    if (saveLegalBtn) {
+        saveLegalBtn.addEventListener('click', hideBanner);
+    }
+
+    // Modal Tabs Logic
+    const tabs = document.querySelectorAll('.legal-tab');
+    const sections = document.querySelectorAll('.legal-section');
+
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            const target = tab.getAttribute('data-target');
+
+            // Update tabs
+            tabs.forEach(t => {
+                t.style.background = 'transparent';
+                t.classList.remove('active');
+            });
+            tab.style.background = '#fff';
+            tab.classList.add('active');
+
+            // Update sections
+            sections.forEach(s => s.style.display = 'none');
+            const targetSect = document.getElementById(target);
+            if (targetSect) targetSect.style.display = 'block';
+        });
+    });
+
+    // Technology Carousel Logic
+    const techNavItems = document.querySelectorAll('.tech-nav-item');
+    const techImages = document.querySelectorAll('.tech-visual img');
+    const techTitle = document.getElementById('tech-title');
+    const techDesc = document.getElementById('tech-desc');
+    let currentTechIndex = 0;
+    let techAutoPlay;
+
+    const titles = [
+        "TAC 3D",
+        "Ortopantomografía",
+        "Telerradiografía",
+        "Osstell",
+        "Philips ZOOM"
+    ];
+
+    const descriptions = [
+        "La tomografía axial computarizada dental (TAC) es un tipo especial de equipo de rayos X con el que obtenemos impresiones precisas de la anatomía bucal. Las reconstrucciones maxilares en 3D que hace posible esta tecnología nos ayudan enormemente a planificar las intervenciones con gran precisión.",
+        "La ortopantomografía reproduce con exactitud el interior de la cavidad oral. Se trata de una técnica radiológica que recrea de forma detallada todas las estructuras óseas faciales en una misma imagen para un diagnóstico global inmediato.",
+        "Fundamental en tratamientos de ortodoncia, la telerradiografía permite la medición de los ángulos y proporciones de la estructura facial ósea para recrear con exactitud su relación y planificar el movimiento dental.",
+        "Un sistema no invasivo que indica el momento exacto en el que un implante dental está listo para la carga. Permite tratamientos más predecibles y evalúa la osteointegración sin poner en riesgo la cicatrización.",
+        "Tecnología LED que permite blanquear la sonrisa de forma segura y eficaz. El fosfato de calcio amorfo (ACP) protege el esmalte mientras se consiguen resultados rápidos y una menor sensibilidad dental."
+    ];
+
+    function showTech(index) {
+        if (!techNavItems[index]) return;
+        techNavItems.forEach(item => item.classList.remove('active'));
+        techImages.forEach(img => img.classList.remove('active'));
+
+        techNavItems[index].classList.add('active');
+        techImages[index].classList.add('active');
+
+        if (techTitle) techTitle.textContent = titles[index];
+
+        if (techDesc) {
+            techDesc.style.opacity = '0';
+            setTimeout(() => {
+                techDesc.textContent = descriptions[index];
+                techDesc.style.opacity = '1';
+            }, 300);
+        }
+        currentTechIndex = index;
+    }
+
+    if (techNavItems.length > 0) {
+        techNavItems.forEach((item, idx) => {
+            item.addEventListener('click', () => {
+                showTech(idx);
+                resetTechInterval();
+            });
+        });
+
+        techAutoPlay = setInterval(() => {
+            let nextIdx = (currentTechIndex + 1) % techNavItems.length;
+            showTech(nextIdx);
+        }, 4000);
+    }
+
+    function resetTechInterval() {
+        clearInterval(techAutoPlay);
+        techAutoPlay = setInterval(() => {
+            let nextIdx = (currentTechIndex + 1) % techNavItems.length;
+            showTech(nextIdx);
+        }, 4000);
+    }
+})();
+
