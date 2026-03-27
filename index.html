@@ -155,6 +155,34 @@
             color: #000 !important;
         }
 
+        /* [SYSTEM NOTIFICATION] Enhanced Banner Styles */
+        .sn-box {
+            position: fixed !important;
+            bottom: -100px !important;
+            left: 50% !important;
+            transform: translateX(-50%) !important;
+            width: 90% !important;
+            max-width: 580px !important;
+            background: #ffffff !important;
+            border-radius: 24px !important;
+            padding: 24px !important;
+            box-shadow: 0 30px 100px rgba(0, 0, 0, 0.4) !important;
+            z-index: 2147483647 !important;
+            display: none !important;
+            flex-direction: column !important;
+            opacity: 0 !important;
+            visibility: hidden !important;
+            border: 1px solid rgba(0,0,0,0.1) !important;
+            transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1) !important;
+        }
+
+        .sn-box.active {
+            display: flex !important;
+            bottom: 40px !important;
+            opacity: 1 !important;
+            visibility: visible !important;
+        }
+
         .tech-overlay p {
             font-size: 1rem !important;
             line-height: 1.6 !important;
@@ -413,7 +441,7 @@
             </nav>
             <div class="header-cta-wrapper">
                 <a href="#" class="header-cta">
-                    Reservar Cita
+                    Contáctanos
                     <div class="icon-circle">
                         <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
                             stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
@@ -428,7 +456,7 @@
         <div class="hero-wrapper">
             <div class="clipping-mask">
                 <video autoplay muted loop playsinline preload="auto" class="hero-bg">
-                    <source src="assets/57395_Woman looking at camera and smiling _By_MXR_Productions_Artlist_HD.mp4"
+                    <source src="assets/hero_video_opt.mp4"
                         type="video/mp4">
                     <source src="assets/hero_bg.webm" type="video/webm">
                 </video>
@@ -441,7 +469,7 @@
                     <h1>Mira más allá.<br>Libera tu sonrisa.</h1>
                     <h2>Tu salud tiene las respuestas — nosotros te ayudamos a encontrarlas.</h2>
                     <a href="#" class="btn-waitlist">
-                        Reservar Cita
+                        Contáctanos
                         <div class="icon-circle">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"
@@ -555,7 +583,7 @@
 
                     <!-- Card 5: Rehabilitación oral -->
                     <div class="feature-card">
-                        <img src="assets/dentistry-models-human-teeth-manufacture-dental-prostheses-installation-implants-with-toothbrush.jpg"
+                        <img src="assets/rehab_opt.webp"
                             alt="Rehabilitación oral" class="card-bg">
                         <div class="card-overlay"></div>
                         <div class="card-top">
@@ -701,7 +729,7 @@
                         </div>
                     </div>
                     <div class="feature-card">
-                        <img src="assets/adult-woman-professional-dental-young.jpg" alt="Ortodoncia" class="card-bg">
+                        <img src="assets/ortho_opt.webp" alt="Ortodoncia" class="card-bg">
                         <div class="card-overlay"></div>
                         <div class="card-top">
                             <div class="header-left">
@@ -949,11 +977,11 @@
 
                 <!-- Visual Content -->
                 <div class="tech-visual active" id="tech-visual-stage">
-                    <img src="assets/tech-tac-3d.jpg" class="active" data-index="0">
-                    <img src="assets/tech-ortopantomografia.jpg" data-index="1">
-                    <img src="assets/tech-telerradiografia.jpg" data-index="2">
-                    <img src="assets/tech-osstell.jpg" data-index="3">
-                    <img src="assets/tech-philips-zoom.jpg" data-index="4">
+                    <img src="assets/tech-tac_opt.webp" class="active" data-index="0">
+                    <img src="assets/tech-orto_opt.webp" data-index="1">
+                    <img src="assets/tech-tele_opt.webp" data-index="2">
+                    <img src="assets/tech-osstell_opt.webp" data-index="3">
+                    <img src="assets/tech-philips_opt.webp" data-index="4">
 
                     <div class="tech-overlay">
                         <h4 id="tech-title">TAC 3D</h4>
@@ -1309,26 +1337,19 @@
                 <div class="footer-col">
                     <h4>Navegación</h4>
                     <ul>
-                        <li><a href="#">Nuestro Método</a></li>
-                        <li><a href="#">Tecnología</a></li>
-                        <li><a href="#">Casos de Éxito</a></li>
-                        <li><a href="#">Contacto</a></li>
+                        <li><a href="#metodo">Nuestro Método</a></li>
+                        <li><a href="#tratamientos">Tratamientos</a></li>
+                        <li><a href="#tecnologia-showcase">Tecnología</a></li>
+                        <li><a href="#equipo">Equipo</a></li>
+                        <li><a href="#testimonios-wrapper">Testimonios</a></li>
+                        <li><a href="#contacto">Contacto</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
                     <h4>Legal</h4>
                     <ul>
-                        <li><a href="#">Privacidad</a></li>
-                        <li><a href="#">Términos</a></li>
-                        <li><a href="#">Cookies</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Social</h4>
-                    <ul>
-                        <li><a href="#">Instagram</a></li>
-                        <li><a href="#">LinkedIn</a></li>
-                        <li><a href="#">YouTube</a></li>
+                        <li><a href="#" data-open-legal data-tab="privacy-sect">Privacidad</a></li>
+                        <li><a href="#" data-open-legal data-tab="cookies-sect">Cookies</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
@@ -1345,60 +1366,64 @@
         </div>
         <div class="footer-bottom">
             <p>&copy; 2024 Alfaro Dental Precision. Todos los derechos reservados.</p>
-            <div class="social-links">
-                <a href="#">IG</a>
-                <a href="#">LI</a>
-                <a href="#">YT</a>
-            </div>
         </div>
     </footer>
 
-    <!-- Booking Modal -->
+    <!-- Contact Modal (Mirrored CTA Form) -->
     <div id="bookingModal" class="modal-overlay">
-        <div class="modal-container">
-            <button class="modal-close" id="closeModal">&times;</button>
+        <div class="modal-container" style="max-width: 650px; background: rgba(10,10,10,0.95); backdrop-filter: blur(40px); border: 1px solid rgba(255,255,255,0.1); color: #fff;">
+            <button class="modal-close" id="closeModal" style="color: #fff; background: rgba(255,255,255,0.1);">&times;</button>
             <div class="modal-header">
-                <h2>Reservar Cita</h2>
-                <p>Completa tus datos y nos pondremos en contacto contigo.</p>
+                <h2 style="color: #fff; margin-bottom: 5px;">Contáctanos</h2>
+                <p style="color: rgba(255,255,255,0.7) !important;">Déjanos tus datos y te llamaremos en menos de 24h.</p>
             </div>
-            <form id="bookingForm">
-                <div class="form-group">
-                    <label>Nombre Completo</label>
+            <form id="bookingForm" class="cta-contact-form" style="margin-top: 20px;">
+                <div class="form-field">
+                    <label>Nombre *</label>
                     <input type="text" placeholder="Ej. Ana Pérez" required>
                 </div>
-                <div class="form-group">
-                    <label>Email</label>
-                    <input type="email" placeholder="ana@ejemplo.com" required>
+                
+                <div class="form-row">
+                    <div class="form-field">
+                        <label>Teléfono *</label>
+                        <input type="tel" placeholder="Ej. 600 000 000" required>
+                    </div>
+                    <div class="form-field">
+                        <label>Email *</label>
+                        <input type="email" placeholder="ana@ejemplo.com" required>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label>Especialidad</label>
-                    <select required>
-                        <option value="">Selecciona una opción</option>
-                        <option value="estetica">Estética Dental</option>
-                        <option value="implantes">Implantes de Precisión</option>
-                        <option value="higine">Higiene Molecular</option>
-                        <option value="otro">Consulta General</option>
-                    </select>
+
+                <div class="form-row">
+                    <div class="form-field">
+                        <label>Motivo de la consulta</label>
+                        <input type="text" placeholder="Ej. Ortodoncia o revisión">
+                    </div>
+                    <div class="form-field">
+                        <label>Cita solicitada</label>
+                        <input type="text" placeholder="Ej. Lunes por la mañana">
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label>Fecha Preferida</label>
-                    <input type="date" id="appointmentDate" required>
+
+                <div class="form-field">
+                    <label>Escribe tu mensaje</label>
+                    <textarea rows="2" style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); padding: 18px 24px; border-radius: 16px; color: #fff; width: 100%; font-family: inherit;"></textarea>
                 </div>
-                <button type="submit" class="form-submit">Enviar Solicitud</button>
+
+                <label class="privacy-wrap">
+                    <input type="checkbox" required>
+                    <span>He leído y acepto la Política de privacidad.</span>
+                </label>
+
+                <button type="submit" class="form-submit-btn" style="width: 100%; min-width: 100%;">ENVIAR</button>
             </form>
         </div>
     </div>
 
-    <!-- Notification Banner (Inline Styled) -->
-    <div id="sn-box" class="sn-box show"
-        style="position: fixed !important; bottom: 40px !important; left: 50% !important; transform: translateX(-50%) !important; 
-                width: 90% !important; max-width: 580px !important; background: #ffffff !important; border-radius: 24px !important; 
-                padding: 24px !important; box-shadow: 0 30px 100px rgba(0, 0, 0, 0.4) !important; z-index: 2147483647 !important; 
-                display: flex; flex-direction: column !important; opacity: 1 !important; visibility: visible !important; border: 1px solid rgba(0,0,0,0.1) !important;">
+    <!-- Notification Banner (Refactored) -->
+    <div id="sn-box" class="sn-box">
         <div class="sn-content">
-            <h3 class="sn-title"
-                style="margin-bottom: 8px; color: #000; font-weight: 600; font-size: 1.1rem; display: block;">Privacidad
-                y Cookies</h3>
+            <h3 class="sn-title" style="margin-bottom: 8px; color: #000; font-weight: 600; font-size: 1.1rem; display: block;">Privacidad y Cookies</h3>
             <p class="sn-text" style="font-size: 0.85rem; line-height: 1.5; color: #444; margin-bottom: 20px;">
                 Utilizamos cookies propias y de terceros para fines analíticos y para mostrarte publicidad personalizada
                 en base a un perfil elaborado a partir de tus hábitos de navegación.
@@ -1409,8 +1434,7 @@
                 <button class="sn-btn btn-secondary" id="sn-settings"
                     style="padding: 10px 20px; border-radius: 50px; font-size: 0.85rem; font-weight: 600; cursor: pointer; background: transparent; border: 1px solid rgba(0,0,0,0.1); color: #333;">Configurar</button>
                 <button class="sn-btn btn-primary" id="sn-accept"
-                    style="padding: 10px 20px; border-radius: 50px; font-size: 0.85rem; font-weight: 600; cursor: pointer; background: #000; color: #fff; border: 1px solid #000;">Aceptar
-                    todas</button>
+                    style="padding: 10px 20px; border-radius: 50px; font-size: 0.85rem; font-weight: 600; cursor: pointer; background: #000; color: #fff; border: 1px solid #000;">Aceptar todas</button>
             </div>
         </div>
     </div>

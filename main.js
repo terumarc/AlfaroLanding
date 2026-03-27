@@ -81,33 +81,49 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        if (bookingForm) {
-            // Form Submission
-            bookingForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-                const btn = bookingForm.querySelector('.form-submit');
-                if (btn) btn.textContent = 'Enviando...';
+    // Unified Contact Form Logic (Modal + Footer)
+    const allContactForms = document.querySelectorAll('.cta-contact-form');
+    
+    allContactForms.forEach(form => {
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const btn = form.querySelector('.form-submit-btn');
+            const originalText = btn ? btn.textContent : 'ENVIAR';
+            
+            if (btn) {
+                btn.textContent = 'Enviando...';
+                btn.disabled = true;
+                btn.style.opacity = '0.7';
+            }
 
-                // Simulate API call
+            // Simulate API call
+            setTimeout(() => {
+                if (btn) {
+                    btn.textContent = '¡Mensaje Enviado!';
+                    btn.style.background = '#00ff7f';
+                    btn.style.color = '#000';
+                }
+
                 setTimeout(() => {
-                    if (btn) {
-                        btn.textContent = '¡Solicitud Enviada!';
-                        btn.style.background = '#00ff00';
-                        btn.style.color = '#000';
+                    const modal = document.getElementById('bookingModal');
+                    if (modal && modal.classList.contains('active')) {
+                        modal.classList.remove('active');
+                        document.body.style.overflow = ''; 
                     }
-
-                    setTimeout(() => {
-                        closeModal();
-                        if (btn) {
-                            btn.textContent = 'Enviar Solicitud';
-                            btn.style.background = '#fff';
-                        }
-                        bookingForm.reset();
-                    }, 2000);
-                }, 1500);
-            });
-        }
-    }
+                    
+                    if (btn) {
+                        btn.textContent = originalText;
+                        btn.style.background = '';
+                        btn.style.color = '';
+                        btn.disabled = false;
+                        btn.style.opacity = '1';
+                    }
+                    form.reset();
+                }, 2000);
+            }, 1500);
+        });
+    });
+}
 
     const track = document.querySelector('.slider-track');
 
@@ -278,21 +294,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeLegalBtn = document.getElementById('closeLegalModal');
     const saveLegalBtn = document.getElementById('save-sn-config');
 
-    const STORAGE_KEY = 'alfaro-legal-consent-prod';
+    const STORAGE_KEY = 'alfaro-legal-v2';
     // localStorage.removeItem(STORAGE_KEY); // Uncomment this to reset for user testing if they can't see it once
 
     function hideBanner() {
         localStorage.setItem(STORAGE_KEY, 'true');
-        if (banner) banner.style.display = 'none';
+        if (banner) banner.classList.remove('active');
         if (legalModal) legalModal.classList.remove('active');
     }
 
     if (banner) {
         if (!localStorage.getItem(STORAGE_KEY)) {
-            banner.style.display = 'flex';
-            setTimeout(() => banner.classList.add('show'), 100);
+            banner.classList.add('active');
         } else {
-            banner.style.display = 'none';
+            banner.classList.remove('active');
         }
 
         if (btnAccept) {
@@ -322,6 +337,22 @@ document.addEventListener('DOMContentLoaded', () => {
     if (saveLegalBtn) {
         saveLegalBtn.addEventListener('click', hideBanner);
     }
+
+    // Global trigger for legal modal from footer or other links
+    document.querySelectorAll('[data-open-legal]').forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const targetTab = link.getAttribute('data-tab');
+            if (legalModal) {
+                legalModal.classList.add('active');
+                // Auto switch tab if target specified
+                if (targetTab) {
+                    const tabBtn = document.querySelector(`.legal-tab[data-target="${targetTab}"]`);
+                    if (tabBtn) tabBtn.click();
+                }
+            }
+        });
+    });
 
     // Modal Tabs Logic
     const tabs = document.querySelectorAll('.legal-tab');
