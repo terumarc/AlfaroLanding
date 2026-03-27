@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Scroll Reveal Logic
+    // --- Scroll Reveal Logic ---
     const revealElements = document.querySelectorAll('.reveal-on-scroll');
 
     const revealOnScroll = () => {
@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('scroll', revealOnScroll);
     revealOnScroll(); // Initial check
 
-    // Force Play Videos (Safari fix for autoplay)
+    // --- Force Play Videos (Safari fix for autoplay) ---
     const forcePlayVideos = () => {
         const videos = document.querySelectorAll('video');
         videos.forEach(video => {
@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
     forcePlayVideos();
     window.addEventListener('load', forcePlayVideos);
 
-    // Modal Logic
+    // --- Booking Modal Logic ---
     const modal = document.getElementById('bookingModal');
     const openBtns = document.querySelectorAll('.header-cta, .btn-waitlist, .btn-white');
     const closeBtn = document.getElementById('closeModal');
@@ -63,13 +63,13 @@ document.addEventListener('DOMContentLoaded', () => {
             btn.addEventListener('click', (e) => {
                 e.preventDefault();
                 modal.classList.add('active');
-                document.body.style.overflow = 'hidden'; // Prevent scrolling when modal is open
+                document.body.style.overflow = 'hidden';
             });
         });
 
         const closeModal = () => {
             modal.classList.remove('active');
-            document.body.style.overflow = ''; // Restore scrolling
+            document.body.style.overflow = '';
         };
 
         if (closeBtn) closeBtn.addEventListener('click', closeModal);
@@ -105,7 +105,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
 
                     setTimeout(() => {
-                        const modal = document.getElementById('bookingModal');
                         if (modal && modal.classList.contains('active')) {
                             modal.classList.remove('active');
                             document.body.style.overflow = '';
@@ -125,18 +124,19 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // --- Treatment Slider Logic ---
     const track = document.querySelector('.slider-track');
 
     if (track) {
         let isDown = false;
         let startX;
         let dragOffset = 0;
-        const duration = 80000; // Sync with CSS 80s
+        const duration = 80000;
 
         const getTranslateX = () => {
             const style = window.getComputedStyle(track);
             const matrix = new DOMMatrix(style.transform);
-            return matrix.e; // Use 'e' for translateX in DOMMatrix
+            return matrix.e;
         };
 
         const handlePointerDown = (e) => {
@@ -215,7 +215,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 3D Team Carousel Logic
+    // --- 3D Team Carousel Logic ---
     const teamCarousel = document.querySelector('.carousel-3d');
     const teamItems = document.querySelectorAll('.carousel-item');
     const teamPrev = document.querySelector('.carousel-prev');
@@ -224,25 +224,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (teamCarousel && teamItems.length > 0) {
         let currentTeamIndex = 0;
-        const totalTeamSlots = 6; // Fixed 6 slots for better visibility
-        const rotateAngle = 60; // 360 / 6
+        const totalTeamSlots = 6;
+        const translateZ = 350;
 
         const updateTeamCarousel = () => {
-            // We map the 4 items to slots: 0, 1, 2, 5 (300deg)
-            // But with JS we can just rotate the whole container.
-            // Items are already placed at 0, 60, 120, 300 in CSS.
-            // We want the current index to be at the front (0deg).
-
-            // Map index to the slot rotation
             let rotation = 0;
             if (currentTeamIndex === 0) rotation = 0;
             if (currentTeamIndex === 1) rotation = -60;
             if (currentTeamIndex === 2) rotation = -120;
-            if (currentTeamIndex === 3) rotation = 60; // Slot 300deg comes to front at +60deg rotation
+            if (currentTeamIndex === 3) rotation = 60;
 
             teamCarousel.style.transform = `rotateY(${rotation}deg)`;
 
-            // Update indicators
             teamIndicators.forEach((ind, i) => {
                 ind.classList.toggle('active', i === currentTeamIndex);
             });
@@ -262,30 +255,24 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
-        // Optional: Auto-rotation
         let teamAutoRotate = setInterval(() => {
             currentTeamIndex = (currentTeamIndex + 1) % 4;
             updateTeamCarousel();
         }, 5000);
 
-        // Pause on hover
         const teamSection = document.querySelector('.team-section');
         if (teamSection) {
             teamSection.addEventListener('mouseenter', () => clearInterval(teamAutoRotate));
             teamSection.addEventListener('mouseleave', () => {
                 teamAutoRotate = setInterval(() => {
-                    currentTeamIndex = (currentTeamIndex + 1) % totalTeamSlots;
+                    currentTeamIndex = (currentTeamIndex + 1) % 4;
                     updateTeamCarousel();
                 }, 5000);
             });
         }
     }
-});
 
-// --- System Notification Logic (Guaranteed Execution) ---
-(function () {
-    console.log("Alfaro Notification Script: Loaded");
-    // alert("Script Alfaro Cargado"); // Debug Alert
+    // --- Legal Notifications & Modal Logic ---
     const banner = document.getElementById('sn-box');
     const btnAccept = document.getElementById('sn-accept');
     const btnSettings = document.getElementById('sn-settings');
@@ -294,8 +281,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeLegalBtn = document.getElementById('closeLegalModal');
     const saveLegalBtn = document.getElementById('save-sn-config');
 
-    const STORAGE_KEY = 'alfaro-legal-v2';
-    // localStorage.removeItem(STORAGE_KEY); // Uncomment this to reset for user testing if they can't see it once
+    const STORAGE_KEY = 'alfaro-legal-v3';
 
     function hideBanner() {
         localStorage.setItem(STORAGE_KEY, 'true');
@@ -305,14 +291,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (banner) {
         if (!localStorage.getItem(STORAGE_KEY)) {
-            banner.classList.add('active');
-        } else {
-            banner.classList.remove('active');
+            setTimeout(() => {
+                banner.classList.add('active');
+            }, 1000);
         }
 
-        if (btnAccept) {
-            btnAccept.addEventListener('click', hideBanner);
-        }
+        if (btnAccept) btnAccept.addEventListener('click', hideBanner);
 
         if (btnSettings) {
             btnSettings.addEventListener('click', () => {
@@ -338,14 +322,13 @@ document.addEventListener('DOMContentLoaded', () => {
         saveLegalBtn.addEventListener('click', hideBanner);
     }
 
-    // Global trigger for legal modal from footer or other links
+    // Global triggers for legal modal (from footer or forms)
     document.querySelectorAll('[data-open-legal]').forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
             const targetTab = link.getAttribute('data-tab');
             if (legalModal) {
                 legalModal.classList.add('active');
-                // Auto switch tab if target specified
                 if (targetTab) {
                     const tabBtn = document.querySelector(`.legal-tab[data-target="${targetTab}"]`);
                     if (tabBtn) tabBtn.click();
@@ -354,7 +337,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Modal Tabs Logic
+    // Legal Modal Tabs
     const tabs = document.querySelectorAll('.legal-tab');
     const sections = document.querySelectorAll('.legal-section');
 
@@ -362,7 +345,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!tabBtn) return;
         const target = tabBtn.getAttribute('data-target');
 
-        // Update tabs state
         tabs.forEach(t => {
             t.style.background = 'transparent';
             t.classList.remove('active');
@@ -370,7 +352,6 @@ document.addEventListener('DOMContentLoaded', () => {
         tabBtn.style.background = '#fff';
         tabBtn.classList.add('active');
 
-        // Update content visibility
         sections.forEach(s => s.style.display = 'none');
         const targetSect = document.getElementById(target);
         if (targetSect) targetSect.style.display = 'block';
@@ -380,7 +361,7 @@ document.addEventListener('DOMContentLoaded', () => {
         tab.addEventListener('click', () => activateTab(tab));
     });
 
-    // Handle internal links within legal text to switch tabs
+    // Internal links within legal text
     document.querySelectorAll('.switch-legal-tab').forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
@@ -390,7 +371,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Technology Carousel Logic
+    // --- Technology Showcase Logic ---
     const techNavItems = document.querySelectorAll('.tech-nav-item');
     const techImages = document.querySelectorAll('.tech-visual img');
     const techTitle = document.getElementById('tech-title');
@@ -434,6 +415,14 @@ document.addEventListener('DOMContentLoaded', () => {
         currentTechIndex = index;
     }
 
+    function resetTechInterval() {
+        clearInterval(techAutoPlay);
+        techAutoPlay = setInterval(() => {
+            let nextIdx = (currentTechIndex + 1) % techNavItems.length;
+            showTech(nextIdx);
+        }, 4000);
+    }
+
     if (techNavItems.length > 0) {
         techNavItems.forEach((item, idx) => {
             item.addEventListener('click', () => {
@@ -447,13 +436,4 @@ document.addEventListener('DOMContentLoaded', () => {
             showTech(nextIdx);
         }, 4000);
     }
-
-    function resetTechInterval() {
-        clearInterval(techAutoPlay);
-        techAutoPlay = setInterval(() => {
-            let nextIdx = (currentTechIndex + 1) % techNavItems.length;
-            showTech(nextIdx);
-        }, 4000);
-    }
-})();
-
+});
