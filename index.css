@@ -1,4 +1,4 @@
-﻿@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700&display=swap');
 
 :root {
     --white: #ffffff;
@@ -13,6 +13,17 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+html {
+    scroll-padding-top: 130px;
+    scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
 }
 
 html,
@@ -174,7 +185,7 @@ header {
     top: 48px;
     left: 24px;
     width: calc(100% - 48px);
-    height: 60px;
+    height: 72px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -190,17 +201,26 @@ header>* {
     /* Buttons/links still clickable */
 }
 
-.logo {
-    font-size: 1.1rem;
-    font-weight: 700;
-    letter-spacing: -0.05em;
+a.logo {
+    display: inline-flex;
+    align-items: center;
     cursor: pointer;
     flex: 1;
-    /* Pushes menu to center */
+    text-decoration: none;
+    color: inherit;
+    line-height: 0;
+}
+
+a.logo img {
+    height: 52px;
+    width: auto;
+    display: block;
 }
 
 .nav-links {
     display: flex;
+    align-items: center;
+    justify-content: center;
     gap: 5px;
     background: rgba(255, 255, 255, 0.05);
     /* Very subtle */
@@ -211,7 +231,8 @@ header>* {
     border-radius: 40px;
     position: absolute;
     left: 50%;
-    transform: translateX(-50%);
+    top: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .nav-link {
@@ -223,11 +244,134 @@ header>* {
     padding: 8px 18px;
     border-radius: 30px;
     transition: var(--transition);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1.2;
 }
 
 .nav-link:hover {
     opacity: 1;
     background: rgba(255, 255, 255, 0.1);
+}
+
+.nav-dropdown-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+/* Zona invisible bajo el botón para mantener hover al bajar hacia la lista */
+.nav-dropdown-wrap::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    height: 14px;
+    z-index: 4998;
+    pointer-events: auto;
+}
+
+.nav-trigger {
+    gap: 8px;
+}
+
+/* Chevron siempre visible en ítems con sublista */
+.nav-dropdown-wrap > .nav-trigger .nav-chevron {
+    flex-shrink: 0;
+    display: block;
+    width: 12px;
+    height: 12px;
+    opacity: 0.92;
+    transition: transform 0.25s ease, opacity 0.2s ease;
+}
+
+.nav-dropdown-wrap:hover > .nav-trigger .nav-chevron,
+.nav-dropdown-wrap:focus-within > .nav-trigger .nav-chevron,
+.nav-dropdown-wrap.is-open > .nav-trigger .nav-chevron {
+    opacity: 1;
+    transform: rotate(180deg);
+}
+
+button.nav-link.nav-trigger {
+    font-family: inherit;
+    margin: 0;
+    -webkit-appearance: none;
+    appearance: none;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: inherit;
+}
+
+.nav-submenu {
+    position: absolute;
+    top: calc(100% + 14px);
+    left: 50%;
+    transform: translateX(-50%);
+    min-width: 220px;
+    max-height: min(70vh, 420px);
+    overflow-y: auto;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 10px;
+    list-style: none;
+    /* Mismo cristal que .nav-links */
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.15s ease, visibility 0.15s ease;
+    z-index: 5000;
+}
+
+.nav-submenu--tratamientos {
+    min-width: 260px;
+}
+
+/* Submenús: hover sobre el padre o foco/teclado; en táctil sigue .is-open (JS) */
+.nav-dropdown-wrap:hover .nav-submenu,
+.nav-dropdown-wrap:focus-within .nav-submenu,
+.nav-dropdown-wrap.is-open .nav-submenu {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .nav-dropdown-wrap:hover > .nav-trigger,
+    .nav-dropdown-wrap:focus-within > .nav-trigger {
+        opacity: 1;
+        background: rgba(255, 255, 255, 0.1);
+    }
+}
+
+.nav-submenu li {
+    margin: 0;
+}
+
+.nav-sublink {
+    display: block;
+    padding: 10px 14px;
+    border-radius: 10px;
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.85);
+    text-decoration: none;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.nav-sublink:hover,
+.nav-sublink:focus-visible {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    outline: none;
 }
 
 .header-cta-wrapper {
@@ -266,6 +410,99 @@ header>* {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.nav-links,
+.header-cta {
+    transition:
+        background 0.35s ease,
+        border-color 0.35s ease,
+        box-shadow 0.35s ease,
+        color 0.35s ease,
+        backdrop-filter 0.35s ease,
+        -webkit-backdrop-filter 0.35s ease;
+}
+
+.nav-link,
+.nav-sublink,
+.header-cta .icon-circle {
+    transition:
+        background 0.35s ease,
+        color 0.35s ease,
+        opacity 0.35s ease;
+}
+
+/* Sobre secciones claras: cristal oscuro tipo liquid glass (borroso + tinte, no sólido) */
+header.header--over-light .nav-links {
+    background: rgba(12, 13, 18, 0.38);
+    backdrop-filter: blur(36px) saturate(1.85) brightness(0.96);
+    -webkit-backdrop-filter: blur(36px) saturate(1.85) brightness(0.96);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    box-shadow:
+        0 8px 36px rgba(0, 0, 0, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.14);
+    isolation: isolate;
+}
+
+header.header--over-light .nav-link {
+    color: #fff;
+    opacity: 0.82;
+}
+
+header.header--over-light .nav-link:hover {
+    opacity: 1;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+header.header--over-light .nav-submenu {
+    background: rgba(10, 11, 14, 0.42);
+    backdrop-filter: blur(36px) saturate(1.75) brightness(0.96);
+    -webkit-backdrop-filter: blur(36px) saturate(1.75) brightness(0.96);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    box-shadow:
+        0 12px 44px rgba(0, 0, 0, 0.18),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+header.header--over-light .nav-sublink {
+    color: rgba(255, 255, 255, 0.92);
+}
+
+header.header--over-light .nav-sublink:hover,
+header.header--over-light .nav-sublink:focus-visible {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+}
+
+@media (hover: hover) and (pointer: fine) {
+
+    header.header--over-light .nav-dropdown-wrap:hover>.nav-trigger,
+    header.header--over-light .nav-dropdown-wrap:focus-within>.nav-trigger {
+        opacity: 1;
+        background: rgba(255, 255, 255, 0.1);
+    }
+}
+
+header.header--over-light .header-cta {
+    background: rgba(12, 13, 18, 0.38);
+    backdrop-filter: blur(36px) saturate(1.85) brightness(0.96);
+    -webkit-backdrop-filter: blur(36px) saturate(1.85) brightness(0.96);
+    border-color: rgba(255, 255, 255, 0.18);
+    color: #fff;
+    box-shadow:
+        0 6px 28px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+header.header--over-light .header-cta:hover {
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(36px) saturate(2) brightness(1);
+    -webkit-backdrop-filter: blur(36px) saturate(2) brightness(1);
+    border-color: rgba(255, 255, 255, 0.22);
+}
+
+header.header--over-light .header-cta .icon-circle {
+    background: rgba(255, 255, 255, 0.14);
 }
 
 .icon-circle svg,
@@ -406,15 +643,20 @@ header>* {
     user-select: none;
 }
 
+/* Outer layer moves with transform — inner stays transform-free so 3D card flip works. */
 .slider-track {
-    display: flex;
     width: max-content;
     animation: ticker 80s linear infinite;
-    padding: 40px 0;
     cursor: grab;
     will-change: transform;
     touch-action: none;
     user-select: none;
+}
+
+.slider-track-inner {
+    display: flex;
+    width: max-content;
+    padding: 40px 0;
 }
 
 .slider-track:hover {
@@ -430,30 +672,135 @@ header>* {
 .feature-card {
     flex: 0 0 400px;
     height: 640px;
-    border-radius: 30px;
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(25px);
-    -webkit-backdrop-filter: blur(25px);
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    margin-right: 30px;
     position: relative;
+    top: 0;
+    border-radius: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: transparent;
+    perspective: 1400px;
+    overflow: visible;
+    cursor: pointer;
+    /* Avoid transform on this element — it flattens preserve-3d children and breaks the flip. Use top for hover lift. */
+    transition: top 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s ease, border-color 0.6s ease;
+}
+
+.feature-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    -webkit-transform-style: preserve-3d;
+    transition: transform 0.65s cubic-bezier(0.4, 0.2, 0.2, 1);
+    border-radius: 30px;
+}
+
+.feature-card.is-flipped .feature-card-inner {
+    transform: rotateY(180deg);
+    -webkit-transform: rotateY(180deg);
+}
+
+.feature-card-face {
+    position: absolute;
+    inset: 0;
+    border-radius: 30px;
     overflow: hidden;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     padding: 30px;
-    margin-right: 30px;
-    /* Crucial for seamless infinite loop */
-    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s ease, border-color 0.6s ease;
+    box-sizing: border-box;
+}
+
+.feature-card-front {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+}
+
+.feature-card-back {
+    transform: rotateY(180deg);
+    -webkit-transform: rotateY(180deg);
+    background: linear-gradient(155deg, #1a2332 0%, #2c3b52 45%, #1e2a3d 100%);
+    color: #fff;
+    justify-content: flex-start;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.card-back-content {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    min-height: 0;
+    flex: 1;
+}
+
+.card-back-content h3 {
+    font-size: 1.35rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin: 0;
+    line-height: 1.2;
+}
+
+.card-back-lead {
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.55;
+    opacity: 0.92;
+    font-weight: 400;
+}
+
+.card-back-list {
+    margin: 0;
+    padding-left: 1.15rem;
+    font-size: 0.95rem;
+    line-height: 1.45;
+    opacity: 0.95;
+}
+
+.card-back-list li {
+    margin-bottom: 0.45em;
+}
+
+.card-back-list li:last-child {
+    margin-bottom: 0;
+}
+
+.card-back-hint {
+    margin: auto 0 0;
+    padding-top: 16px;
+    font-size: 0.82rem;
+    opacity: 0.65;
+    font-weight: 400;
 }
 
 .feature-card:hover {
-    transform: scale(1.05) translateY(-5px);
+    top: -8px;
     z-index: 10;
     border-color: rgba(255, 255, 255, 0.5);
 }
 
-.feature-card:active {
-    cursor: grabbing;
+.feature-card.is-flipped:hover {
+    top: -8px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .feature-card-inner {
+        transition-duration: 0.01ms;
+    }
+}
+
+.feature-card:focus-visible {
+    outline: 2px solid rgba(255, 255, 255, 0.85);
+    outline-offset: 4px;
+}
+
+.feature-card:focus:not(:focus-visible) {
+    outline: none;
 }
 
 .feature-card .card-bg {
@@ -495,27 +842,28 @@ header>* {
     padding-bottom: 20px;
 }
 
-.header-left {
+/* Treatment card headers only — avoid clashing with site <header> / nav naming */
+.card-top .header-left {
     display: flex;
     align-items: flex-start;
     gap: 4px;
 }
 
-.header-left .value {
+.card-top .header-left .value {
     font-size: 4.8rem;
     font-weight: 500;
     line-height: 0.75;
     letter-spacing: -0.04em;
 }
 
-.header-left .unit {
+.card-top .header-left .unit {
     font-size: 0.8rem;
     margin-top: 5px;
     font-weight: 400;
     opacity: 0.9;
 }
 
-.header-right {
+.card-top .header-right {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -524,14 +872,14 @@ header>* {
     min-height: 3.5rem;
 }
 
-.header-right .title {
+.card-top .header-right .title {
     font-size: 1.1rem;
     font-weight: 500;
     line-height: 1.1;
     letter-spacing: -0.02em;
 }
 
-.header-right .subtitle {
+.card-top .header-right .subtitle {
     font-size: 0.85rem;
     opacity: 0.7;
     margin-top: 2px;
@@ -541,15 +889,16 @@ header>* {
     position: relative;
     z-index: 2;
     color: #fff;
+    padding-top: 4px;
 }
 
 .card-bottom p {
-    font-size: 0.9rem;
-    line-height: 1.35;
-    max-width: 95%;
-    font-weight: 400;
-    opacity: 0.95;
-    letter-spacing: -0.01em;
+    font-size: 1.125rem;
+    line-height: 1.55;
+    max-width: 100%;
+    font-weight: 500;
+    opacity: 0.98;
+    letter-spacing: 0.01em;
 }
 
 .card-top .dots-icon {
@@ -1010,16 +1359,6 @@ header>* {
     margin-bottom: 80px;
 }
 
-.footer-logo {
-    font-size: 8vw;
-    font-weight: 700;
-    letter-spacing: -0.05em;
-    line-height: 0.8;
-    margin-bottom: 60px;
-    opacity: 0.1;
-    text-transform: uppercase;
-}
-
 .footer-grid {
     display: grid;
     grid-template-columns: 2fr 1fr 1fr 1fr;
@@ -1091,6 +1430,36 @@ header>* {
     color: #000;
     overflow: hidden;
     position: relative;
+}
+
+.team-intro {
+    max-width: 1120px;
+    margin: 0 auto clamp(88px, 11vw, 140px);
+    padding: 0 clamp(20px, 5vw, 60px);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem 3rem;
+    align-items: start;
+    text-align: left;
+}
+
+.team-intro p {
+    font-size: 1.05rem;
+    line-height: 1.65;
+    color: #444;
+    margin: 0;
+}
+
+.team-intro p:last-child {
+    margin-bottom: 0;
+}
+
+@media (max-width: 767px) {
+    .team-intro {
+        grid-template-columns: 1fr;
+        gap: 1.15rem;
+        text-align: left;
+    }
 }
 
 .carousel-container {
@@ -1269,14 +1638,15 @@ header>* {
 }
 
 .modal-container {
-    background: rgba(0, 0, 0, 0.4);
-    backdrop-filter: blur(40px) saturate(1.8);
-    -webkit-backdrop-filter: blur(40px) saturate(1.8);
+    /* Mismo cristal que .nav-links */
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     width: 90%;
     max-width: 500px;
     padding: 60px;
     border-radius: 40px;
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     position: relative;
     transform: scale(0.9) translateY(40px);
     transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), clip-path 0.8s ease;
@@ -1805,16 +2175,18 @@ input[type='date'] {
         grid-template-columns: 1fr 1fr;
         gap: 40px;
     }
+
 }
 
 @media (max-width: 768px) {
     header {
         padding: 0 20px;
         top: 24px;
+        height: 64px;
     }
 
-    .logo {
-        font-size: 0.9rem;
+    a.logo img {
+        height: 42px;
     }
 
     .header-cta {
@@ -1951,11 +2323,31 @@ input[type='date'] {
         /* Reduced from 400px */
         height: 480px;
         /* Reduced from 640px */
-        padding: 20px;
         margin-right: 20px;
     }
 
-    .header-left .value {
+    .feature-card-face {
+        padding: 20px;
+    }
+
+    .card-back-content h3 {
+        font-size: 1.2rem;
+    }
+
+    .card-back-lead {
+        font-size: 0.95rem;
+    }
+
+    .card-back-list {
+        font-size: 0.9rem;
+    }
+
+    .card-bottom p {
+        font-size: 1.05rem;
+        line-height: 1.5;
+    }
+
+    .card-top .header-left .value {
         font-size: 3.5rem;
     }
 
@@ -1973,11 +2365,15 @@ input[type='date'] {
 @media (max-width: 480px) {
     header {
         padding: 0 15px;
-        height: 50px;
+        height: 58px;
     }
 
-    .logo {
-        font-size: 0.75rem;
+    a.logo img {
+        height: 36px;
+    }
+
+    .team-intro p {
+        font-size: 1rem;
     }
 
     .header-cta {
@@ -2006,10 +2402,35 @@ input[type='date'] {
         flex: 0 0 240px;
         /* Even smaller for very narrow screens */
         height: 420px;
+    }
+
+    .feature-card-face {
         padding: 15px;
     }
 
-    .header-left .value {
+    .card-back-content h3 {
+        font-size: 1.1rem;
+    }
+
+    .card-back-lead {
+        font-size: 0.88rem;
+    }
+
+    .card-back-list {
+        font-size: 0.84rem;
+        padding-left: 1rem;
+    }
+
+    .card-back-hint {
+        font-size: 0.75rem;
+    }
+
+    .card-bottom p {
+        font-size: 1rem;
+        line-height: 1.5;
+    }
+
+    .card-top .header-left .value {
         font-size: 2.8rem;
     }
 
@@ -2022,10 +2443,6 @@ input[type='date'] {
 
     .footer-grid {
         grid-template-columns: 1fr;
-    }
-
-    .footer-logo {
-        font-size: 15vw;
     }
 
     .faq-question {

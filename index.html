@@ -62,43 +62,46 @@
 
         .tech-carousel-container {
             display: flex !important;
-            flex-wrap: wrap !important;
-            max-width: 1400px !important;
-            margin: 60px auto 0 !important;
-            background: #f9f9f9 !important;
-            border-radius: 60px !important;
-            overflow: hidden !important;
-            min-height: 700px !important;
-            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.05) !important;
-            border: 1px solid #eee !important;
+            flex-direction: column !important;
+            max-width: 1100px !important;
+            margin: 56px auto 0 !important;
+            gap: 40px !important;
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+            border-radius: 0 !important;
+            min-height: auto !important;
+            overflow: visible !important;
         }
 
         .tech-nav {
-            width: 35% !important;
-            padding: 60px !important;
+            width: 100% !important;
+            padding: 0 !important;
             display: flex !important;
-            flex-direction: column !important;
+            flex-direction: row !important;
+            flex-wrap: wrap !important;
             justify-content: center !important;
+            align-items: center !important;
             position: relative !important;
             z-index: 10 !important;
-            gap: 15px !important;
-            background: #fff !important;
-            border-right: 1px solid #eee !important;
+            gap: 12px !important;
+            background: transparent !important;
+            border: none !important;
         }
 
         .tech-nav-item {
-            background: transparent !important;
-            border: 1px solid #eee !important;
-            color: #888 !important;
-            padding: 22px 30px !important;
-            border-radius: 40px !important;
-            text-align: left !important;
+            background: #fff !important;
+            border: 1px solid #e4e4e4 !important;
+            color: #666 !important;
+            padding: 16px 26px !important;
+            border-radius: 999px !important;
+            text-align: center !important;
             cursor: pointer !important;
-            transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) !important;
-            font-size: 0.95rem !important;
+            transition: all 0.35s cubic-bezier(0.2, 0.8, 0.2, 1) !important;
+            font-size: 0.88rem !important;
             font-weight: 600 !important;
             text-transform: uppercase !important;
-            letter-spacing: 1.5px !important;
+            letter-spacing: 1.2px !important;
             white-space: nowrap;
         }
 
@@ -106,53 +109,97 @@
             background: #000 !important;
             color: #fff !important;
             border-color: #000 !important;
-            transform: scale(1.05) !important;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1) !important;
+            transform: none !important;
+            box-shadow: none !important;
         }
 
         .tech-visual {
-            flex: 1 !important;
+            width: 100% !important;
             position: relative !important;
-            background: #fff !important;
-            overflow: hidden !important;
-            min-height: 500px !important;
+            background: transparent !important;
+            overflow: visible !important;
+            min-height: auto !important;
         }
 
-        .tech-visual img {
+        .tech-visual-media {
+            position: relative !important;
+            width: 100% !important;
+            min-height: 420px !important;
+            aspect-ratio: 16 / 10 !important;
+            border-radius: 28px !important;
+            overflow: hidden !important;
+            background: #f0f0f0 !important;
+        }
+
+        .tech-visual-media img {
             width: 100% !important;
             height: 100% !important;
             object-fit: cover !important;
             position: absolute !important;
             inset: 0 !important;
             opacity: 0 !important;
-            transition: opacity 0.8s ease, transform 1.2s ease !important;
-            transform: scale(1.1) !important;
+            transition: opacity 0.8s ease, transform 1s ease !important;
+            transform: scale(1.04) !important;
         }
 
-        .tech-visual img.active {
+        .tech-visual-media img.active {
             opacity: 1 !important;
             transform: scale(1) !important;
         }
 
-        .tech-overlay {
+        /* Capa inferior: blur + tinte en gradiente suave (sin línea dura arriba) */
+        .tech-detail {
             position: absolute !important;
             bottom: 0 !important;
             left: 0 !important;
             right: 0 !important;
-            padding: 50px !important;
-            background: linear-gradient(to top, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.7), transparent) !important;
-            color: #000 !important;
+            padding: 88px 44px 40px !important;
+            text-align: center !important;
             z-index: 5 !important;
-            max-height: 60% !important;
-            overflow-y: auto !important;
-            scrollbar-width: none;
+            isolation: isolate !important;
+            border-radius: 0 0 28px 28px !important;
+            background: none !important;
+            box-shadow: none !important;
         }
 
-        .tech-overlay h4 {
-            font-size: 1.8rem !important;
-            margin-bottom: 15px !important;
+        .tech-detail::before {
+            content: "" !important;
+            position: absolute !important;
+            inset: 0 !important;
+            z-index: -1 !important;
+            pointer-events: none !important;
+            border-radius: inherit !important;
+            background: linear-gradient(to top,
+                    rgba(4, 6, 10, 0.94) 0%,
+                    rgba(4, 6, 10, 0.78) 14%,
+                    rgba(4, 6, 10, 0.48) 34%,
+                    rgba(4, 6, 10, 0.22) 58%,
+                    rgba(4, 6, 10, 0.06) 82%,
+                    rgba(4, 6, 10, 0) 100%) !important;
+            backdrop-filter: blur(26px) saturate(1.08) !important;
+            -webkit-backdrop-filter: blur(26px) saturate(1.08) !important;
+            -webkit-mask-image: linear-gradient(to top,
+                    rgba(0, 0, 0, 1) 0%,
+                    rgba(0, 0, 0, 1) 28%,
+                    rgba(0, 0, 0, 0.72) 56%,
+                    rgba(0, 0, 0, 0.28) 82%,
+                    rgba(0, 0, 0, 0) 100%) !important;
+            mask-image: linear-gradient(to top,
+                    rgba(0, 0, 0, 1) 0%,
+                    rgba(0, 0, 0, 1) 28%,
+                    rgba(0, 0, 0, 0.72) 56%,
+                    rgba(0, 0, 0, 0.28) 82%,
+                    rgba(0, 0, 0, 0) 100%) !important;
+        }
+
+        .tech-detail h4 {
+            position: relative !important;
+            z-index: 1 !important;
+            font-size: 1.55rem !important;
+            margin-bottom: 10px !important;
             font-weight: 700 !important;
-            color: #000 !important;
+            color: #fff !important;
+            letter-spacing: -0.02em !important;
         }
 
         /* [SYSTEM NOTIFICATION] Enhanced Banner Styles */
@@ -183,40 +230,30 @@
             visibility: visible !important;
         }
 
-        .tech-overlay p {
+        .tech-detail p {
+            position: relative !important;
+            z-index: 1 !important;
             font-size: 1rem !important;
-            line-height: 1.6 !important;
+            line-height: 1.65 !important;
             font-weight: 400 !important;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.6s 0.2s ease;
-            color: #555 !important;
-        }
-
-        .tech-visual.active .tech-overlay p {
-            opacity: 1;
-            transform: translateY(0);
+            color: rgba(255, 255, 255, 0.92) !important;
+            margin: 0 auto !important;
+            max-width: 52rem !important;
+            transition: opacity 0.35s ease !important;
         }
 
         @media (max-width: 1024px) {
             .tech-carousel-container {
-                flex-direction: column !important;
-                min-height: auto !important;
-                border-radius: 40px !important;
+                gap: 28px !important;
             }
 
             .tech-nav {
-                width: 100% !important;
-                padding: 20px !important;
-                height: auto !important;
-                flex-direction: row !important;
-                overflow-x: auto !important;
-                scrollbar-width: none !important;
-                border-right: none !important;
-                border-bottom: 1px solid #eee !important;
-                gap: 12px !important;
-                -ms-overflow-style: none !important;
                 justify-content: flex-start !important;
+                overflow-x: auto !important;
+                flex-wrap: nowrap !important;
+                padding-bottom: 6px !important;
+                scrollbar-width: none !important;
+                -ms-overflow-style: none !important;
                 -webkit-overflow-scrolling: touch !important;
             }
 
@@ -226,13 +263,27 @@
 
             .tech-nav-item {
                 flex-shrink: 0 !important;
-                white-space: nowrap !important;
-                font-size: 0.8rem !important;
-                padding: 12px 20px !important;
+                font-size: 0.78rem !important;
+                padding: 12px 18px !important;
             }
 
-            .tech-visual {
-                height: 500px !important;
+            .tech-visual-media {
+                min-height: 280px !important;
+                aspect-ratio: 4 / 3 !important;
+                border-radius: 22px !important;
+            }
+
+            .tech-detail {
+                padding: 56px 20px 22px !important;
+                border-radius: 0 0 22px 22px !important;
+            }
+
+            .tech-detail h4 {
+                font-size: 1.25rem !important;
+            }
+
+            .tech-detail p {
+                font-size: 0.92rem !important;
             }
         }
 
@@ -513,17 +564,55 @@
 </head>
 
 <body>
-    <div class="main-screen">
+    <div class="main-screen" id="inicio">
         <header>
-            <div class="logo">ALFARO DENTAL</div>
-            <nav class="nav-links">
-                <a href="#tratamientos" class="nav-link">Tratamientos</a>
-                <a href="#metodo" class="nav-link">Nuestro Método</a>
-                <a href="#tecnologia-showcase" class="nav-link">Tecnología</a>
+            <a href="#inicio" class="logo" aria-label="Clínica Dental Alfaro — inicio">
+                <img src="assets/logo-clinica-alfaro.png" alt="Clínica Dental Alfaro — Dra. Aleyda Alfaro Díaz"
+                    width="1024" height="562" decoding="async">
+            </a>
+            <nav class="nav-links" aria-label="Principal">
+                <a href="#inicio" class="nav-link">Inicio</a>
+
+                <div class="nav-dropdown-wrap">
+                    <button type="button" class="nav-link nav-trigger" aria-expanded="false" aria-haspopup="true"
+                        aria-controls="submenu-clinica" id="nav-btn-clinica">
+                        La clínica
+                        <svg class="nav-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </button>
+                    <ul class="nav-submenu" id="submenu-clinica" role="menu">
+                        <li role="none"><a role="menuitem" href="#equipo" class="nav-sublink">Equipo</a></li>
+                        <li role="none"><a role="menuitem" href="#testimonios-wrapper" class="nav-sublink">Casos reales</a></li>
+                        <li role="none"><a role="menuitem" href="#tecnologia-showcase" class="nav-sublink">Tecnología</a></li>
+                    </ul>
+                </div>
+
+                <div class="nav-dropdown-wrap nav-dropdown-wrap--tratamientos">
+                    <button type="button" class="nav-link nav-trigger" aria-expanded="false" aria-haspopup="true"
+                        aria-controls="submenu-tratamientos" id="nav-btn-tratamientos">
+                        Tratamientos
+                        <svg class="nav-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true">
+                            <polyline points="6 9 12 15 18 9"></polyline>
+                        </svg>
+                    </button>
+                    <ul class="nav-submenu nav-submenu--tratamientos" id="submenu-tratamientos" role="menu">
+                        <li role="none"><a role="menuitem" href="#tratamiento-implantologia" class="nav-sublink">Implantología</a></li>
+                        <li role="none"><a role="menuitem" href="#tratamiento-estetica-dental" class="nav-sublink">Estética dental</a></li>
+                        <li role="none"><a role="menuitem" href="#tratamiento-ortodoncia" class="nav-sublink">Ortodoncia</a></li>
+                        <li role="none"><a role="menuitem" href="#tratamiento-odontopediatria" class="nav-sublink">Odontopediatría</a></li>
+                        <li role="none"><a role="menuitem" href="#tratamiento-rehabilitacion-oral" class="nav-sublink">Rehabilitación oral</a></li>
+                        <li role="none"><a role="menuitem" href="#tratamiento-bruxismo" class="nav-sublink">Bruxismo</a></li>
+                        <li role="none"><a role="menuitem" href="#tratamiento-endodoncia" class="nav-sublink">Endodoncia</a></li>
+                        <li role="none"><a role="menuitem" href="#tratamiento-periodoncia" class="nav-sublink">Periodoncia</a></li>
+                        <li role="none"><a role="menuitem" href="#tratamiento-acido-hialuronico" class="nav-sublink">Ácido hialurónico</a></li>
+                    </ul>
+                </div>
+
                 <a href="#facilidades-wrapper" class="nav-link">Facilidades</a>
-                <a href="#testimonios-wrapper" class="nav-link">Testimonios</a>
                 <a href="#faq" class="nav-link">FAQ</a>
-                <a href="#equipo" class="nav-link">Equipo</a>
                 <a href="#contacto" class="nav-link">Contacto</a>
             </nav>
             <div class="header-cta-wrapper">
@@ -582,9 +671,10 @@
 
             <div class="slider-container">
                 <div class="slider-track">
+                    <div class="slider-track-inner">
                     <!-- Original Set -->
                     <!-- Card 1: Implantología -->
-                    <div class="feature-card">
+                    <div class="feature-card" id="tratamiento-implantologia" data-treatment="1">
                         <img src="assets/ttt_implantologia-570x385.webp" alt="Implantología" class="card-bg">
                         <div class="card-overlay"></div>
                         <div class="card-top">
@@ -605,7 +695,7 @@
                     </div>
 
                     <!-- Card 2: Estética dental -->
-                    <div class="feature-card">
+                    <div class="feature-card" id="tratamiento-estetica-dental" data-treatment="2">
                         <img src="assets/jarmoluk-dentist-428646_1920.jpg" alt="Estética dental" class="card-bg">
                         <div class="card-overlay"></div>
                         <div class="card-top">
@@ -626,7 +716,7 @@
                     </div>
 
                     <!-- Card 3: Ortodoncia -->
-                    <div class="feature-card">
+                    <div class="feature-card" id="tratamiento-ortodoncia" data-treatment="3">
                         <img src="assets/adult-woman-professional-dental-young.jpg" alt="Ortodoncia" class="card-bg">
                         <div class="card-overlay"></div>
                         <div class="card-top">
@@ -647,7 +737,7 @@
                     </div>
 
                     <!-- Card 4: Odontopediatría -->
-                    <div class="feature-card">
+                    <div class="feature-card" id="tratamiento-odontopediatria" data-treatment="4">
                         <img src="assets/ales_kartal-dentist-1864921_1920.jpg" alt="Odontopediatría" class="card-bg">
                         <div class="card-overlay"></div>
                         <div class="card-top">
@@ -668,7 +758,7 @@
                     </div>
 
                     <!-- Card 5: Rehabilitación oral -->
-                    <div class="feature-card">
+                    <div class="feature-card" id="tratamiento-rehabilitacion-oral" data-treatment="5">
                         <img src="assets/rehab_opt.webp" alt="Rehabilitación oral" class="card-bg">
                         <div class="card-overlay"></div>
                         <div class="card-top">
@@ -689,7 +779,7 @@
                     </div>
 
                     <!-- Card 6: Bruxismo -->
-                    <div class="feature-card">
+                    <div class="feature-card" id="tratamiento-bruxismo" data-treatment="6">
                         <img src="assets/explorerbob-dentist-3528684_1920.jpg" alt="Bruxismo" class="card-bg">
                         <div class="card-overlay"></div>
                         <div class="card-top">
@@ -710,7 +800,7 @@
                     </div>
 
                     <!-- Card 7: Endodoncia -->
-                    <div class="feature-card">
+                    <div class="feature-card" id="tratamiento-endodoncia" data-treatment="7">
                         <img src="assets/anestiev-tooth-2068131_1920.jpg" alt="Endodoncia" class="card-bg">
                         <div class="card-overlay"></div>
                         <div class="card-top">
@@ -731,7 +821,7 @@
                     </div>
 
                     <!-- Card 8: Periodoncia -->
-                    <div class="feature-card">
+                    <div class="feature-card" id="tratamiento-periodoncia" data-treatment="8">
                         <img src="assets/geralt-dentist-8729625_1920.jpg" alt="Periodoncia" class="card-bg">
                         <div class="card-overlay"></div>
                         <div class="card-top">
@@ -752,7 +842,7 @@
                     </div>
 
                     <!-- Card 9: Ácido hialurónico -->
-                    <div class="feature-card">
+                    <div class="feature-card" id="tratamiento-acido-hialuronico" data-treatment="9">
                         <img src="assets/patient_1.png" alt="Ácido hialurónico" class="card-bg"
                             style="filter: hue-rotate(-45deg);">
                         <div class="card-overlay"></div>
@@ -775,7 +865,7 @@
 
                     <!-- Cloned Set for Seamless Loop -->
                     <!-- Cloned 1-4 for smooth transition wrap -->
-                    <div class="feature-card">
+                    <div class="feature-card" data-treatment="1">
                         <img src="assets/ttt_implantologia-570x385.webp" alt="Implantología" class="card-bg">
                         <div class="card-overlay"></div>
                         <div class="card-top">
@@ -794,7 +884,7 @@
                                 resultados naturales.</p>
                         </div>
                     </div>
-                    <div class="feature-card">
+                    <div class="feature-card" data-treatment="2">
                         <img src="assets/jarmoluk-dentist-428646_1920.jpg" alt="Estética dental" class="card-bg">
                         <div class="card-overlay"></div>
                         <div class="card-top">
@@ -813,7 +903,7 @@
                                 dental y carillas.</p>
                         </div>
                     </div>
-                    <div class="feature-card">
+                    <div class="feature-card" data-treatment="3">
                         <img src="assets/ortho_opt.webp" alt="Ortodoncia" class="card-bg">
                         <div class="card-overlay"></div>
                         <div class="card-top">
@@ -832,7 +922,7 @@
                                 del mercado.</p>
                         </div>
                     </div>
-                    <div class="feature-card">
+                    <div class="feature-card" data-treatment="4">
                         <img src="assets/ales_kartal-dentist-1864921_1920.jpg" alt="Odontopediatría" class="card-bg">
                         <div class="card-overlay"></div>
                         <div class="card-top">
@@ -852,7 +942,7 @@
                         </div>
                     </div>
                     <!-- Added Clones 5-9 -->
-                    <div class="feature-card">
+                    <div class="feature-card" data-treatment="5">
                         <img src="assets/dentistry-models-human-teeth-manufacture-dental-prostheses-installation-implants-with-toothbrush.jpg"
                             alt="Rehabilitación oral" class="card-bg">
                         <div class="card-overlay"></div>
@@ -872,7 +962,7 @@
                                 integrales.</p>
                         </div>
                     </div>
-                    <div class="feature-card">
+                    <div class="feature-card" data-treatment="6">
                         <img src="assets/explorerbob-dentist-3528684_1920.jpg" alt="Bruxismo" class="card-bg">
                         <div class="card-overlay"></div>
                         <div class="card-top">
@@ -891,7 +981,7 @@
                                 medida.</p>
                         </div>
                     </div>
-                    <div class="feature-card">
+                    <div class="feature-card" data-treatment="7">
                         <img src="assets/anestiev-tooth-2068131_1920.jpg" alt="Endodoncia" class="card-bg">
                         <div class="card-overlay"></div>
                         <div class="card-top">
@@ -910,7 +1000,7 @@
                             </p>
                         </div>
                     </div>
-                    <div class="feature-card">
+                    <div class="feature-card" data-treatment="8">
                         <img src="assets/geralt-dentist-8729625_1920.jpg" alt="Periodoncia" class="card-bg">
                         <div class="card-overlay"></div>
                         <div class="card-top">
@@ -929,7 +1019,7 @@
                                 sistémica.</p>
                         </div>
                     </div>
-                    <div class="feature-card">
+                    <div class="feature-card" data-treatment="9">
                         <img src="assets/patient_1.png" alt="Ácido hialurónico" class="card-bg"
                             style="filter: hue-rotate(-45deg);">
                         <div class="card-overlay"></div>
@@ -948,6 +1038,7 @@
                             <p>Aumento de labios sin cirugía para armonizar tu estética facial con resultados naturales.
                             </p>
                         </div>
+                    </div>
                     </div>
                 </div>
             </div>
@@ -1060,20 +1151,21 @@
                     <button class="tech-nav-item" data-index="4">Philips ZOOM</button>
                 </div>
 
-                <!-- Visual Content -->
+                <!-- Fotos con texto superpuesto (gradiente + blur) -->
                 <div class="tech-visual active" id="tech-visual-stage">
-                    <img src="assets/tech-tac_opt.webp" class="active" data-index="0">
-                    <img src="assets/tech-orto_opt.webp" data-index="1">
-                    <img src="assets/tech-tele_opt.webp" data-index="2">
-                    <img src="assets/tech-osstell_opt.webp" data-index="3">
-                    <img src="assets/tech-philips_opt.webp" data-index="4">
-
-                    <div class="tech-overlay">
-                        <h4 id="tech-title">TAC 3D</h4>
-                        <p id="tech-desc">La tomografía axial computarizada dental (TAC) es un tipo especial de equipo
-                            de rayos X con el que obtenemos impresiones precisas de la anatomía bucal. Las
-                            reconstrucciones maxilares en 3D ayudan enormemente a planificar las intervenciones con gran
-                            precisión.</p>
+                    <div class="tech-visual-media">
+                        <img src="assets/tech-tac_opt.webp" alt="" class="active" data-index="0">
+                        <img src="assets/tech-orto_opt.webp" alt="" data-index="1">
+                        <img src="assets/tech-tele_opt.webp" alt="" data-index="2">
+                        <img src="assets/tech-osstell_opt.webp" alt="" data-index="3">
+                        <img src="assets/tech-philips_opt.webp" alt="" data-index="4">
+                        <div class="tech-detail" aria-live="polite">
+                            <h4 id="tech-title">TAC 3D</h4>
+                            <p id="tech-desc">La tomografía axial computarizada dental (TAC) es un tipo especial de equipo
+                                de rayos X con el que obtenemos impresiones precisas de la anatomía bucal. Las
+                                reconstrucciones maxilares en 3D que hace posible esta tecnología nos ayudan enormemente a
+                                planificar las intervenciones con gran precisión.</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1277,7 +1369,16 @@
                 <h2>Los arquitectos de tu nueva sonrisa.</h2>
             </div>
 
-            <div class="carousel-container reveal-on-scroll" style="margin-top: 60px;">
+            <div class="team-intro reveal-on-scroll">
+                <p>En Alfaro Clínica Dental (Sants–Montjuïc, Barcelona) reunimos un equipo multidisciplinar en estética,
+                    periodoncia, implantología, ortodoncia, odontopediatría, ATM y rehabilitación: una sola visión
+                    integral para tu salud bucodental.</p>
+                <p>Combinamos experiencia, formación continua y tecnología con un trato cercano que nos caracteriza.
+                    Llevamos más de una década siendo referencia para quienes buscan odontología con vocación de
+                    servicio.</p>
+            </div>
+
+            <div class="carousel-container reveal-on-scroll">
                 <div class="carousel-3d">
                     <div class="carousel-item">
                         <div class="team-card">
@@ -1353,37 +1454,39 @@
 
                 <div class="cta-compound-wrapper">
                     <!-- Contact Form -->
-                    <form class="cta-contact-form">
+                    <form class="cta-contact-form" action="https://formspree.io/f/infoalfarodental@gmail.com"
+                        method="POST">
+                        <input type="hidden" name="_subject" value="Nuevo Lead desde Alfaro Dental">
                         <div class="form-field">
                             <label>Nombre *</label>
-                            <input type="text" required>
+                            <input type="text" name="nombre" required>
                         </div>
 
                         <div class="form-row">
                             <div class="form-field">
                                 <label>Teléfono *</label>
-                                <input type="tel" required>
+                                <input type="tel" name="telefono" required>
                             </div>
                             <div class="form-field">
                                 <label>Email *</label>
-                                <input type="email" required>
+                                <input type="email" name="email" required>
                             </div>
                         </div>
 
                         <div class="form-row">
                             <div class="form-field">
                                 <label>Motivo de la consulta</label>
-                                <input type="text">
+                                <input type="text" name="motivo">
                             </div>
                             <div class="form-field">
                                 <label>Cita solicitada</label>
-                                <input type="text">
+                                <input type="text" name="cita_solicitada">
                             </div>
                         </div>
 
                         <div class="form-field">
                             <label>Escribe tu mensaje</label>
-                            <textarea rows="2"></textarea>
+                            <textarea rows="2" name="mensaje"></textarea>
                         </div>
 
                         <label class="privacy-wrap">
@@ -1416,7 +1519,6 @@
 
     <footer class="main-footer">
         <div class="footer-top reveal-on-scroll">
-            <div class="footer-logo">Alfaro Dental</div>
             <div class="footer-grid">
                 <div class="footer-col">
                     <h4>Clínica</h4>
@@ -1426,11 +1528,13 @@
                 <div class="footer-col">
                     <h4>Navegación</h4>
                     <ul>
-                        <li><a href="#metodo">Nuestro Método</a></li>
-                        <li><a href="#tratamientos">Tratamientos</a></li>
-                        <li><a href="#tecnologia-showcase">Tecnología</a></li>
+                        <li><a href="#inicio">Inicio</a></li>
                         <li><a href="#equipo">Equipo</a></li>
-                        <li><a href="#testimonios-wrapper">Testimonios</a></li>
+                        <li><a href="#testimonios-wrapper">Casos reales</a></li>
+                        <li><a href="#tecnologia-showcase">Tecnología</a></li>
+                        <li><a href="#tratamientos">Tratamientos</a></li>
+                        <li><a href="#facilidades-wrapper">Facilidades</a></li>
+                        <li><a href="#faq">FAQ</a></li>
                         <li><a href="#contacto">Contacto</a></li>
                     </ul>
                 </div>
@@ -1460,46 +1564,46 @@
 
     <!-- Contact Modal (Mirrored CTA Form) -->
     <div id="bookingModal" class="modal-overlay">
-        <div class="modal-container"
-            style="max-width: 650px; background: rgba(10,10,10,0.95); backdrop-filter: blur(40px); border: 1px solid rgba(255,255,255,0.1); color: #fff;">
-            <button class="modal-close" id="closeModal"
-                style="color: #fff; background: rgba(255,255,255,0.1);">&times;</button>
+        <div class="modal-container" style="max-width: 650px; color: #fff;">
+            <button type="button" class="modal-close" id="closeModal" aria-label="Cerrar">&times;</button>
             <div class="modal-header">
                 <h2 style="color: #fff; margin-bottom: 5px;">Contáctanos</h2>
                 <p style="color: rgba(255,255,255,0.7) !important;">Déjanos tus datos y te llamaremos en menos de 24h.
                 </p>
             </div>
-            <form id="bookingForm" class="cta-contact-form" style="margin-top: 20px;">
+            <form id="bookingForm" class="cta-contact-form" action="https://formspree.io/f/infoalfarodental@gmail.com"
+                method="POST" style="margin-top: 20px;">
+                <input type="hidden" name="_subject" value="Cita Urgente desde el Modal Alfaro Dental">
                 <div class="form-field">
                     <label>Nombre *</label>
-                    <input type="text" placeholder="Ej. Ana Pérez" required>
+                    <input type="text" name="nombre" placeholder="Ej. Ana Pérez" required>
                 </div>
 
                 <div class="form-row">
                     <div class="form-field">
                         <label>Teléfono *</label>
-                        <input type="tel" placeholder="Ej. 600 000 000" required>
+                        <input type="tel" name="telefono" placeholder="Ej. 600 000 000" required>
                     </div>
                     <div class="form-field">
                         <label>Email *</label>
-                        <input type="email" placeholder="ana@ejemplo.com" required>
+                        <input type="email" name="email" placeholder="ana@ejemplo.com" required>
                     </div>
                 </div>
 
                 <div class="form-row">
                     <div class="form-field">
                         <label>Motivo de la consulta</label>
-                        <input type="text" placeholder="Ej. Ortodoncia o revisión">
+                        <input type="text" name="motivo" placeholder="Ej. Ortodoncia o revisión">
                     </div>
                     <div class="form-field">
                         <label>Cita solicitada</label>
-                        <input type="text" placeholder="Ej. Lunes por la mañana">
+                        <input type="text" name="cita_solicitada" placeholder="Ej. Lunes por la mañana">
                     </div>
                 </div>
 
                 <div class="form-field">
                     <label>Escribe tu mensaje</label>
-                    <textarea rows="2"
+                    <textarea rows="2" name="mensaje"
                         style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); padding: 18px 24px; border-radius: 16px; color: #fff; width: 100%; font-family: inherit;"></textarea>
                 </div>
 
